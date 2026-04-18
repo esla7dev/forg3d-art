@@ -139,7 +139,7 @@
         "description": "Wearable Wolverine cosplay helmet, screen-accurate, 3D printed in Egypt.",
         "image": "https://forg3d.art/images/wolverine-cosplay-mask-egypt.webp",
         "brand": { "@type": "Brand", "name": "Forg3d.Art" },
-        "offers": { "@type": "Offer", "price": "2000", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
+        "offers": { "@type": "Offer", "price": "2299", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
       }
     },
     {
@@ -163,7 +163,7 @@
         "description": "Wearable Deadpool cosplay mask with mesh eye lenses, screen-accurate, 3D printed in Egypt.",
         "image": "https://forg3d.art/images/deadpool-cosplay-mask-egypt.webp",
         "brand": { "@type": "Brand", "name": "Forg3d.Art" },
-        "offers": { "@type": "Offer", "price": "999", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
+        "offers": { "@type": "Offer", "price": "1299", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
       }
     },
     {
@@ -175,7 +175,7 @@
         "description": "Wearable Joker cosplay mask from The Dark Knight, full-face, 3D printed in Egypt.",
         "image": "https://forg3d.art/images/joker-cosplay-mask-egypt.webp",
         "brand": { "@type": "Brand", "name": "Forg3d.Art" },
-        "offers": { "@type": "Offer", "price": "999", "priceCurrency": "EGP", "availability": "https://schema.org/PreOrder", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
+        "offers": { "@type": "Offer", "price": "1299", "priceCurrency": "EGP", "availability": "https://schema.org/PreOrder", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
       }
     },
     {
@@ -187,7 +187,7 @@
         "description": "Wearable Iron Man Mark 46 cosplay helmet with LED-compatible eyes, 3D printed in Egypt.",
         "image": "https://forg3d.art/images/iron-man-cosplay-mask-egypt.webp",
         "brand": { "@type": "Brand", "name": "Forg3d.Art" },
-        "offers": { "@type": "Offer", "price": "1999", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
+        "offers": { "@type": "Offer", "price": "2999", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
       }
     },
     {
@@ -211,7 +211,7 @@
         "description": "Wearable Oni demon cosplay mask, hand-painted, 3D printed in Egypt.",
         "image": "https://forg3d.art/images/oni-demon-cosplay-mask-egypt.webp",
         "brand": { "@type": "Brand", "name": "Forg3d.Art" },
-        "offers": { "@type": "Offer", "price": "999", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
+        "offers": { "@type": "Offer", "price": "1299", "priceCurrency": "EGP", "availability": "https://schema.org/InStock", "seller": { "@type": "Organization", "name": "Forg3d.Art" } }
       }
     }
   ]
@@ -252,13 +252,13 @@
   body::before {
     content: ''; position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.03; pointer-events: none; z-index: 9999;
+    opacity: 0.03; pointer-events: none; z-index: 100;
   }
 
   body::after {
     content: ''; position: fixed; inset: 0;
     background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
-    pointer-events: none; z-index: 9998;
+    pointer-events: none; z-index: 99;
   }
 
   /* NAV */
@@ -771,6 +771,8 @@
   .no-js .filter-tabs { display: none; }
   .no-js .lightbox { display: none; }
 
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
   /* RESPONSIVE */
   @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 900px) {
@@ -830,7 +832,7 @@
     <span></span>
     <span></span>
   </button>
-  <a href="https://wa.me/201096677140" target="_blank" class="nav-cta">Order Now</a>
+  <a href="https://wa.me/201096677140" target="_blank" rel="noopener noreferrer" class="nav-cta">Order Now</a>
 </nav>
 
 <section id="hero">
@@ -891,7 +893,7 @@
   <div class="products-grid">
 
     <div class="product-card reveal" data-cat="sci-fi">
-      <div class="card-img" data-images='["images/optimus-prime-cosplay-mask-egypt.jpeg","images/optimus-prime-cosplay-mask-egypt-2.jpeg"]' data-current="0"><img src="images/optimus-prime-cosplay-mask-egypt.jpeg" alt="Optimus Prime cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-badge">Sale</span><span class="card-cat">Sci-Fi</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/optimus-prime-cosplay-mask-egypt.jpeg","images/optimus-prime-cosplay-mask-egypt-2.jpeg"]' data-current="0"><img src="images/optimus-prime-cosplay-mask-egypt.jpeg" alt="Optimus Prime cosplay mask Egypt wearable 3D printed" width="600" height="600"><span class="card-cat">Sci-Fi</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Optimus Prime Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Optimus Prime cosplay helmet with LED eyes, 3D printed and hand-finished in Egypt. Perfect for conventions, photoshoots, and collectors looking for a high-quality Transformers build.</p>
@@ -903,13 +905,13 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">3,000 EGP</span><span class="price-was">4,000 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Optimus%20Prime%20helmet!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Optimus%20Prime%20helmet!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
 
     <div class="product-card reveal" data-cat="fantasy">
-      <div class="card-img" data-images='["images/sauron-cosplay-mask-egypt.jpeg","images/sauron-cosplay-mask-egypt-2.jpeg"]' data-current="0"><img src="images/sauron-cosplay-mask-egypt.jpeg" alt="Sauron cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-badge">Sale</span><span class="card-cat">Fantasy</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/sauron-cosplay-mask-egypt.jpeg","images/sauron-cosplay-mask-egypt-2.jpeg"]' data-current="0"><img src="images/sauron-cosplay-mask-egypt.jpeg" alt="Sauron cosplay mask Egypt wearable 3D printed" width="600" height="600"><span class="card-cat">Fantasy</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Dark Lord Sauron Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Dark Lord Sauron cosplay helmet, 3D printed and hand-finished in Egypt. Screen-accurate design perfect for Lord of the Rings conventions and serious collectors.</p>
@@ -921,13 +923,13 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">3,000 EGP</span><span class="price-was">4,000 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Sauron%20helmet!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Sauron%20helmet!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
 
     <div class="product-card reveal" data-cat="superhero">
-      <div class="card-img" data-images='["images/wolverine-cosplay-mask-egypt.webp","images/wolverine-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/wolverine-cosplay-mask-egypt.webp" alt="Wolverine cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-badge">Sale</span><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/wolverine-cosplay-mask-egypt.webp","images/wolverine-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/wolverine-cosplay-mask-egypt.webp" alt="Wolverine cosplay mask Egypt wearable 3D printed" width="600" height="600"><span class="card-badge">Sale</span><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Wolverine Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Wolverine cosplay helmet with signature pointed ears, 3D printed and hand-finished in Egypt. Perfect for X-Men conventions and costume events.</p>
@@ -939,7 +941,7 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">2,299 EGP</span><span class="price-was">2,500 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Wolverine%20cowl!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Wolverine%20cowl!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
@@ -957,7 +959,7 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">3,000 EGP</span><span class="price-was">4,000 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Jack%20Skellington%20mask!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Jack%20Skellington%20mask!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
@@ -975,7 +977,7 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">1,299 EGP</span><span class="price-was">1,600 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Deadpool%20mask!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Deadpool%20mask!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
@@ -993,7 +995,7 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">1,299 EGP</span><span class="price-was">1,600 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Joker%20mask!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Joker%20mask!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
@@ -1011,7 +1013,7 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">2,999 EGP</span><span class="price-was">3,500 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Iron%20Man%20MK-46!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Iron%20Man%20MK-46!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
@@ -1029,7 +1031,7 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">3,800 EGP</span><span class="price-was">5,200 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20DiscoHead!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20DiscoHead!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
@@ -1047,7 +1049,7 @@
         </div>
         <div class="card-footer">
           <div class="card-price"><span class="price-now">1,299 EGP</span><span class="price-was">1,600 EGP</span></div>
-          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Oni%20Demon%20mask!" target="_blank" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
+          <a href="https://wa.me/201096677140?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Oni%20Demon%20mask!" target="_blank" rel="noopener noreferrer" class="btn-order"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order Now</a>
         </div>
       </div>
     </div>
@@ -1095,7 +1097,7 @@
     <p class="section-desc" style="margin:0 auto;text-align:center;">All orders and inquiries are handled personally through WhatsApp. We respond fast.</p>
     <div class="contact-box">
       <p style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--iron);letter-spacing:3px;text-transform:uppercase;">Tap to open WhatsApp and send your order or inquiry</p>
-      <a href="https://wa.me/201096677140" target="_blank" class="btn-wa-big" id="btnWaBig">
+      <a href="https://wa.me/201096677140" target="_blank" rel="noopener noreferrer" class="btn-wa-big" id="btnWaBig">
         <canvas id="wa-particles"></canvas>
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WHATSAPP US NOW
@@ -1106,7 +1108,7 @@
   </div>
 </section>
 
-<section aria-label="About Forg3d.Art cosplay masks in Egypt">
+<section aria-label="About Forg3d.Art cosplay masks in Egypt" class="visually-hidden">
   <h2>Cosplay Masks & Helmets in Egypt</h2>
   <p>Looking for high-quality cosplay masks in Egypt? Forg3d.Art offers handcrafted 3D printed masks and helmets designed for accuracy, comfort, and durability. We provide custom cosplay builds, wearable helmets, and collector-grade pieces with nationwide delivery.</p>
   <p>Our work is trusted by cosplayers attending events like Insomnia Egypt and other conventions across the country.</p>
@@ -1199,9 +1201,11 @@
       rip.addEventListener('animationend', () => rip.remove());
       
       // Conversion tracking
+      const card = this.closest('.product-card');
+      const label = card ? card.querySelector('.card-name').textContent.trim() : 'unknown';
       gtag('event', 'whatsapp_click', {
         event_category: 'engagement',
-        event_label: this.previousElementSibling.previousElementSibling.textContent.trim()
+        event_label: label
       });
     });
   });
@@ -1340,6 +1344,7 @@
     const isOpen = navUl.classList.toggle('mobile-open');
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
   document.querySelectorAll('nav ul a').forEach(a => {

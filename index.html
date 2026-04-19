@@ -1366,6 +1366,23 @@
       document.body.style.overflow = '';
     });
   });
+  document.addEventListener('click', (e) => {
+    if (navUl.classList.contains('mobile-open') && !navUl.contains(e.target) && !hamburger.contains(e.target)) {
+      navUl.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navUl.classList.contains('mobile-open')) {
+      navUl.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+      hamburger.focus();
+    }
+  });
 
   // Animated counter stats
   const statEls = document.querySelectorAll('.hstat-num');

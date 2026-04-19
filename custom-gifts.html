@@ -99,227 +99,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://wa.me">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
-  :root {
-    --black: #0a0a0a;
-    --dark: #111111;
-    --panel: #161616;
-    --border: #2a2a2a;
-    --steel: #3d3d3d;
-    --iron: #9a9a9a;
-    --silver: #c0c0c0;
-    --white: #f0ede8;
-    --gold: #c9a84c;
-    --gold-dim: #8a6f2e;
-    --ember: #e05c2a;
-    --wa: #25D366;
-    --wa-dark: #1da851;
-  }
+  /* GIFTS PAGE OVERRIDES */
+  #hero { min-height: 60vh; padding: 120px 48px 80px 48px; }
+  h1 { font-size: clamp(60px, 9vw, 120px); }
+  .hero-sub { max-width: 540px; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
-
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Barlow', sans-serif;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: ''; position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.03; pointer-events: none; z-index: 100;
-  }
-
-  body::after {
-    content: ''; position: fixed; inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
-    pointer-events: none; z-index: 99;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-  }
-
-  .logo {
-    font-family: 'Bebas Neue', sans-serif; font-size: 28px;
-    letter-spacing: 4px; color: var(--white); text-decoration: none; position: relative;
-  }
-  .logo em { color: var(--gold); font-style: normal; }
-  .logo::after {
-    content: '// HANDCRAFTED IN EGYPT';
-    font-family: 'Share Tech Mono', monospace; font-size: 9px;
-    letter-spacing: 2px; color: var(--iron);
-    position: absolute; bottom: -13px; left: 0; white-space: nowrap;
-  }
-
-  nav ul { list-style: none; display: flex; gap: 40px; }
-  nav a {
-    font-family: 'Share Tech Mono', monospace; font-size: 11px;
-    letter-spacing: 3px; color: var(--iron); text-decoration: none;
-    text-transform: uppercase; transition: color 0.2s; position: relative;
-  }
-  nav a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0;
-    width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
-  }
-  nav a:hover { color: var(--gold); }
-  nav a:hover::after { width: 100%; }
-  nav a.active-link { color: var(--gold); }
-  nav a.active-link::after { width: 100%; }
-
-  .nav-cta {
-    background: transparent; border: 1px solid var(--gold);
-    color: var(--gold) !important; padding: 8px 20px;
-    font-family: 'Share Tech Mono', monospace; font-size: 11px;
-    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
-    transition: all 0.25s; position: relative; overflow: hidden;
-  }
-  .nav-cta::before {
-    content: ''; position: absolute; top: 0; left: -100%;
-    width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.25), transparent);
-    transform: skewX(-20deg);
-  }
-  .nav-cta:hover::before { left: 160%; transition: left 0.5s ease; }
-  .nav-cta:hover { background: var(--gold); color: var(--black) !important; }
-  .nav-cta::after { display: none !important; }
-
-  /* HERO */
-  #hero {
-    min-height: 60vh; display: flex; align-items: center;
-    position: relative; overflow: hidden; padding: 120px 48px 80px 48px;
-  }
-
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(224,92,42,0.04) 0%, transparent 60%),
-      linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-  }
-
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 70% 70% at 60% 50%, black 0%, transparent 80%);
-  }
-
-  .hero-content { position: relative; z-index: 2; max-width: 800px; }
-
-  .hero-tag {
-    font-family: 'Share Tech Mono', monospace; font-size: 11px;
-    letter-spacing: 4px; color: var(--gold); text-transform: uppercase;
-    margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
-    animation: fadeUp 0.8s ease both;
-  }
-  .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
-
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(60px, 9vw, 120px); line-height: 0.9;
-    letter-spacing: 2px; color: var(--white);
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-  h1 .accent { color: var(--gold); }
-  h1 .dim { color: var(--steel); }
-
-  .hero-sub {
-    margin-top: 32px; font-size: 16px; font-weight: 300;
-    color: var(--iron); line-height: 1.8; max-width: 540px;
-    letter-spacing: 0.5px; animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .hero-actions {
-    margin-top: 48px; display: flex; gap: 20px; align-items: center;
-    flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--gold); color: var(--black);
-    padding: 14px 32px; font-family: 'Share Tech Mono', monospace;
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    text-decoration: none; font-weight: 700; transition: all 0.25s;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-  }
-  .btn-primary:hover { background: var(--ember); transform: translateY(-2px); }
-
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 10px;
-    border: 1px solid var(--border); color: var(--silver);
-    padding: 14px 32px; font-family: 'Share Tech Mono', monospace;
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    text-decoration: none; transition: all 0.25s;
-  }
-  .btn-ghost:hover { border-color: var(--silver); color: var(--white); }
-
-  /* SECTION BASE */
-  section { padding: 100px 48px; position: relative; }
-
-  .section-label {
-    font-family: 'Share Tech Mono', monospace; font-size: 10px;
-    letter-spacing: 5px; color: var(--gold); text-transform: uppercase;
-    margin-bottom: 16px; display: flex; align-items: center; gap: 16px;
-  }
-  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 6vw, 72px); letter-spacing: 2px; line-height: 1;
-    color: var(--white); margin-bottom: 16px;
-  }
-  .section-title span { color: var(--gold); }
-
-  .section-desc { font-size: 15px; color: var(--iron); line-height: 1.8; max-width: 560px; font-weight: 300; }
-
-  /* COLLECTION */
   #gifts-collection { background: var(--black); }
 
-  .collection-hd { max-width: 1300px; margin: 0 auto 48px; }
-
-  .filter-tabs { display: flex; gap: 4px; flex-wrap: wrap; max-width: 1300px; margin: 0 auto 40px; }
-
-  .filter-btn {
-    font-family: 'Share Tech Mono', monospace; font-size: 10px;
-    letter-spacing: 3px; text-transform: uppercase; padding: 8px 20px;
-    background: transparent; border: 1px solid var(--border);
-    color: var(--iron); cursor: pointer; transition: all 0.2s;
-  }
-  .filter-btn:hover, .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--black); }
-
-  .products-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2px; max-width: 1300px; margin: 0 auto;
-  }
-
-  .product-card {
-    background: var(--panel); border: 1px solid var(--border);
-    overflow: hidden; position: relative; transition: border-color 0.3s;
-    display: flex; flex-direction: column;
-  }
-  .product-card:hover { border-color: var(--gold-dim); }
-  .product-card.hidden { display: none; }
-  .product-card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 3px; height: 0; background: var(--gold); transition: height 0.4s; z-index: 1;
-  }
-  .product-card:hover::before { height: 100%; }
-
-  .card-img {
-    aspect-ratio: 1/1; position: relative; overflow: hidden; background: var(--dark);
-    width: 100% !important; height: auto !important;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .card-img { display: flex; align-items: center; justify-content: center; }
 
   .placeholder-icon {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -330,9 +119,9 @@
     font-family: 'Share Tech Mono', monospace; font-size: 10px;
     letter-spacing: 3px; color: var(--steel); text-transform: uppercase;
   }
-  .card-img img {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  }
+
+  .card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+
   .card-gallery { position: relative; width: 100%; height: 100%; }
   .card-gallery img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; }
   .card-gallery img.active { opacity: 1; }
@@ -340,42 +129,8 @@
   .gallery-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; border: 1px solid rgba(255,255,255,0.15); padding: 0; transition: background 0.2s, border-color 0.2s; }
   .gallery-dot.active { background: var(--gold); border-color: var(--gold); }
 
-  .card-badge {
-    position: absolute; top: 12px; left: 12px;
-    background: var(--gold); color: var(--black);
-    font-family: 'Share Tech Mono', monospace; font-size: 9px;
-    letter-spacing: 3px; text-transform: uppercase; padding: 4px 10px;
-    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-  }
+  .card-badge { background: var(--gold); color: var(--black); }
 
-  .card-cat {
-    position: absolute; top: 12px; right: 12px;
-    background: rgba(10,10,10,0.85); color: var(--gold);
-    font-family: 'Share Tech Mono', monospace; font-size: 8px;
-    letter-spacing: 3px; text-transform: uppercase; padding: 4px 8px;
-  }
-
-  .card-body { padding: 24px 28px 28px; flex: 1; display: flex; flex-direction: column; }
-
-  .card-name {
-    font-family: 'Bebas Neue', sans-serif; font-size: 24px;
-    letter-spacing: 2px; color: var(--white); margin-bottom: 8px; line-height: 1;
-  }
-
-  .card-desc { font-size: 13px; color: var(--iron); line-height: 1.7; margin-bottom: 16px; flex: 1; font-weight: 300; }
-
-  .card-specs {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 20px;
-  }
-  .spec-item { background: var(--dark); padding: 8px 12px; }
-  .spec-key { font-family: 'Share Tech Mono', monospace; font-size: 7px; letter-spacing: 2px; color: var(--steel); text-transform: uppercase; margin-bottom: 3px; }
-  .spec-val { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--gold); }
-
-  .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-
-  .card-price { display: flex; flex-direction: column; gap: 2px; }
-  .price-now { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--gold); line-height: 1; }
   .price-from { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--iron); letter-spacing: 2px; text-transform: uppercase; }
 
   /* CTA BUTTONS */
@@ -396,13 +151,8 @@
 
   /* PROCESS SECTION */
   #how-it-works { background: var(--black); border-top: 1px solid var(--border); }
-
   .process-inner { max-width: 900px; margin: 0 auto; }
-
-  .steps {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 48px;
-  }
-
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 48px; }
   .step { text-align: center; padding: 0; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 16px; }
   .step-num {
     width: 56px; height: 56px; min-width: 56px; border: 1px solid var(--gold); background: var(--black);
@@ -417,9 +167,7 @@
 
   /* FORM SECTION */
   #customize { background: var(--panel); border-top: 1px solid var(--border); }
-
   .form-container { max-width: 700px; margin: 0 auto; }
-
   .gift-form {
     margin-top: 48px; background: var(--dark); border: 1px solid var(--border);
     padding: 48px; position: relative;
@@ -428,13 +176,11 @@
     content: ''; position: absolute; top: -1px; left: 10%; right: 10%;
     height: 3px; background: linear-gradient(to right, transparent, var(--gold), transparent);
   }
-
   .form-group { margin-bottom: 24px; }
   .form-group label {
     display: block; font-family: 'Share Tech Mono', monospace; font-size: 10px;
     letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
   }
-
   .form-group input,
   .form-group select,
   .form-group textarea {
@@ -446,18 +192,14 @@
   }
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none; border-color: var(--gold);
-  }
+  .form-group textarea:focus { outline: none; border-color: var(--gold); }
   .form-group select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23c9a84c'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right 16px center;
     padding-right: 40px; cursor: pointer;
   }
   .form-group textarea { resize: vertical; min-height: 80px; }
-
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-
   .form-error {
     font-family: 'Share Tech Mono', monospace; font-size: 10px;
     color: var(--ember); letter-spacing: 1px; margin-top: 4px; display: none;
@@ -465,7 +207,6 @@
   .form-group.has-error .form-error { display: block; }
   .form-group.has-error input,
   .form-group.has-error select { border-color: var(--ember); }
-
   .char-count {
     font-family: 'Share Tech Mono', monospace; font-size: 9px;
     color: var(--steel); letter-spacing: 1px; margin-top: 4px; text-align: right;
@@ -498,18 +239,6 @@
 
   /* CONTACT */
   #contact { background: var(--black); text-align: center; border-top: 1px solid var(--border); }
-  .contact-inner { max-width: 700px; margin: 0 auto; }
-
-  .contact-box {
-    margin-top: 56px; background: var(--dark); border: 1px solid var(--border); padding: 60px; position: relative;
-  }
-  .contact-box::before {
-    content: ''; position: absolute; top: -1px; left: 10%; right: 10%;
-    height: 3px; background: linear-gradient(to right, transparent, var(--gold), transparent);
-  }
-
-  .contact-note { margin-top: 24px; font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--steel); text-transform: uppercase; }
-  .contact-num { font-family: 'Share Tech Mono', monospace; font-size: 20px; color: var(--gold); margin-top: 12px; letter-spacing: 3px; }
 
   .btn-wa-contact {
     display: inline-flex; align-items: center; gap: 14px;
@@ -533,119 +262,15 @@
   .btn-wa-contact svg { width: 28px; height: 28px; fill: #000; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
   .btn-wa-contact:hover svg { transform: rotate(15deg) scale(1.2); }
 
-  /* FAQ */
-  .faq-list { margin-top: 40px; }
-  .faq-item { border-top: 1px solid var(--border); padding: 0; }
-  .faq-item:last-child { border-bottom: 1px solid var(--border); }
-  .faq-q {
-    font-family: 'Bebas Neue', sans-serif; font-size: 18px;
-    letter-spacing: 2px; color: var(--white); text-transform: uppercase;
-    padding: 24px 0; cursor: pointer; list-style: none;
-    display: flex; justify-content: space-between; align-items: center;
-    transition: color 0.2s;
-  }
-  .faq-q::-webkit-details-marker { display: none; }
-  .faq-q::after { content: '+'; color: var(--gold); font-size: 24px; transition: transform 0.3s; }
-  .faq-item[open] .faq-q { color: var(--gold); }
-  .faq-item[open] .faq-q::after { transform: rotate(45deg); }
-  .faq-a { color: var(--iron); font-size: 15px; line-height: 1.7; padding-bottom: 24px; font-weight: 300; }
-
-  /* FOOTER */
-  footer {
-    background: var(--panel); border-top: 1px solid var(--border);
-    padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
-  }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 4px; color: var(--iron); }
-  .footer-logo em { color: var(--gold); font-style: normal; }
-  .footer-text { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--steel); letter-spacing: 2px; }
-
-  /* FOCUS */
-  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-
-  .skip-to-content {
-    position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--black); padding: 12px 24px;
-    font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 2px;
-    text-decoration: none; text-transform: uppercase; z-index: 9999; transition: top 0.2s;
-  }
-  .skip-to-content:focus { top: 12px; }
-
-  /* ANIM */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes pulse-gold { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-  .blink { animation: pulse-gold 2s infinite; }
-
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
-  ::-webkit-scrollbar-thumb { background: var(--gold-dim); }
-
-  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
-  /* HAMBURGER */
-  .nav-hamburger { display: none; }
-
-  /* TRUST BAR */
-  .trust-bar {
-    padding: 28px 48px !important;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--panel);
-  }
-  .trust-bar-inner {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px; text-align: center; max-width: 1300px; margin: 0 auto;
-  }
-  .trust-item {
-    font-family: 'Share Tech Mono', monospace; font-size: 11px;
-    letter-spacing: 3px; text-transform: uppercase; color: var(--silver);
-  }
-  .trust-icon { color: var(--gold); margin-right: 6px; }
-
-  .ripple {
-    position: absolute; border-radius: 50%;
-    background: rgba(255,255,255,0.35); transform: scale(0);
-    animation: ripple-anim 0.55s linear; pointer-events: none;
-  }
-  @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
-
-  /* RESPONSIVE */
-  @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  /* GIFTS RESPONSIVE OVERRIDES */
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    nav ul { display: none; }
-    .nav-hamburger {
-      display: flex; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer;
-      padding: 4px; z-index: 300;
-    }
-    .nav-hamburger span {
-      display: block; width: 24px; height: 2px;
-      background: var(--gold); transition: all 0.3s;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    nav ul.mobile-open {
-      display: flex; flex-direction: column;
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(10,10,10,0.98); z-index: 250;
-      align-items: center; justify-content: center; gap: 40px;
-    }
-    nav ul.mobile-open a { font-size: 16px; letter-spacing: 5px; }
-    section { padding: 64px 24px; }
     #hero { padding: 100px 24px 60px; }
     h1 { font-size: 56px; }
     .steps { grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .form-row { grid-template-columns: 1fr; }
     .gift-form { padding: 32px 24px; }
-    .contact-box { padding: 32px 24px; }
-    footer { flex-direction: column; text-align: center; }
   }
   @media (max-width: 600px) {
-    .products-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
   }
 </style>
@@ -719,7 +344,7 @@
     <!-- NAME TAGS -->
     <div class="product-card reveal" data-cat="name-tags">
       <div class="card-img">
-        <img src="images/gifts/4.1.JPG" alt="Customizable Name Tag — 3D printed in Arabic or English, personalized desk or office gift" loading="lazy">
+        <img src="images/gifts/4.1.JPG" alt="Customizable Name Tag — 3D printed in Arabic or English, personalized desk or office gift" loading="lazy" width="600" height="600">
         <span class="card-badge">New</span>
         <span class="card-cat">Name Tags</span>
       </div>
@@ -745,7 +370,7 @@
     <!-- FAMILY GIFTS -->
     <div class="product-card reveal" data-cat="family-gifts">
       <div class="card-img">
-        <img src="images/gifts/1.3.jpg" alt="Personalized Family Sign — 3D printed family name gift with Arabic or English engraving" loading="lazy">
+        <img src="images/gifts/1.3.jpg" alt="Personalized Family Sign — 3D printed family name gift with Arabic or English engraving" loading="lazy" width="600" height="600">
         <span class="card-badge">Bestseller</span>
         <span class="card-cat">Family Gifts</span>
       </div>
@@ -771,7 +396,7 @@
     <!-- COUPLE GIFTS -->
     <div class="product-card reveal" data-cat="couple-gifts">
       <div class="card-img">
-        <img src="images/gifts/2.1.jpeg" alt="Personalized Couple Gift — 3D printed Valentine sign with names or initials in Arabic or English" loading="lazy">
+        <img src="images/gifts/2.1.jpeg" alt="Personalized Couple Gift — 3D printed Valentine sign with names or initials in Arabic or English" loading="lazy" width="600" height="600">
         <span class="card-badge">Valentine's</span>
         <span class="card-cat">Couple Gifts</span>
       </div>
@@ -797,9 +422,9 @@
     <div class="product-card reveal" data-cat="couple-gifts">
       <div class="card-img">
         <div class="card-gallery">
-          <img src="images/gifts/3.1.jpg" alt="Initials with Heart romantic decor gift — 3D printed with names or initials in Arabic or English" loading="lazy" class="active">
-          <img src="images/gifts/3.2.jpg" alt="Initials with Heart romantic decor — view 2" loading="lazy">
-          <img src="images/gifts/3.3.jpg" alt="Initials with Heart romantic decor — view 3" loading="lazy">
+          <img src="images/gifts/3.1.jpg" alt="Initials with Heart romantic decor gift — 3D printed with names or initials in Arabic or English" loading="lazy" class="active" width="600" height="600">
+          <img src="images/gifts/3.2.jpg" alt="Initials with Heart romantic decor — view 2" loading="lazy" width="600" height="600">
+          <img src="images/gifts/3.3.jpg" alt="Initials with Heart romantic decor — view 3" loading="lazy" width="600" height="600">
           <div class="gallery-dots">
             <button class="gallery-dot active" aria-label="Image 1"></button>
             <button class="gallery-dot" aria-label="Image 2"></button>
@@ -831,7 +456,7 @@
     <!-- WALL ART -->
     <div class="product-card reveal" data-cat="wall-art">
       <div class="card-img">
-        <img src="images/gifts/5.1.gif" alt="Customizable Parametric Lithophane Text — 3D printed light art revealing your name or message in Arabic or English" loading="lazy">
+        <img src="images/gifts/5.1.gif" alt="Customizable Parametric Lithophane Text — 3D printed light art revealing your name or message in Arabic or English" loading="lazy" width="600" height="600">
         <span class="card-badge">Light Art</span>
         <span class="card-cat">Wall Art</span>
       </div>
@@ -857,7 +482,7 @@
     <!-- ISLAMIC DECOR -->
     <div class="product-card reveal" data-cat="islamic-decor">
       <div class="card-img">
-        <img src="images/gifts/6.1.jpg" alt="Alhamdulillah Arabic calligraphy stand — 3D printed Islamic decor gift handcrafted in Egypt" loading="lazy">
+        <img src="images/gifts/6.1.jpg" alt="Alhamdulillah Arabic calligraphy stand — 3D printed Islamic decor gift handcrafted in Egypt" loading="lazy" width="600" height="600">
         <span class="card-badge">Islamic</span>
         <span class="card-cat">Islamic Decor</span>
       </div>
@@ -882,7 +507,7 @@
 
     <div class="product-card reveal" data-cat="islamic-decor">
       <div class="card-img">
-        <img src="images/gifts/7.1.jpg" alt="Subhanallah Arabic calligraphy stand — 3D printed Islamic decor gift handcrafted in Egypt" loading="lazy">
+        <img src="images/gifts/7.1.jpg" alt="Subhanallah Arabic calligraphy stand — 3D printed Islamic decor gift handcrafted in Egypt" loading="lazy" width="600" height="600">
         <span class="card-badge">Islamic</span>
         <span class="card-cat">Islamic Decor</span>
       </div>
@@ -908,8 +533,8 @@
     <div class="product-card reveal" data-cat="islamic-decor">
       <div class="card-img">
         <div class="card-gallery">
-          <img src="images/gifts/9.1.jpg" alt="Surah Al Kafiroon wall art — 3D printed Islamic calligraphy with black script on white circular panel" loading="lazy" class="active">
-          <img src="images/gifts/9.2.jpg" alt="Surah Al Kafiroon wall art — detail view" loading="lazy">
+          <img src="images/gifts/9.1.jpg" alt="Surah Al Kafiroon wall art — 3D printed Islamic calligraphy with black script on white circular panel" loading="lazy" class="active" width="600" height="600">
+          <img src="images/gifts/9.2.jpg" alt="Surah Al Kafiroon wall art — detail view" loading="lazy" width="600" height="600">
           <div class="gallery-dots">
             <button class="gallery-dot active" aria-label="Image 1"></button>
             <button class="gallery-dot" aria-label="Image 2"></button>
@@ -940,7 +565,7 @@
     <!-- DESKTOP -->
     <div class="product-card reveal" data-cat="desktop">
       <div class="card-img">
-        <img src="images/gifts/8.1.jpg" alt="Letter Decor Designer — 3D printed freestanding letter with emoji and pattern fills, colorful desk gift" loading="lazy">
+        <img src="images/gifts/8.1.jpg" alt="Letter Decor Designer — 3D printed freestanding letter with emoji and pattern fills, colorful desk gift" loading="lazy" width="600" height="600">
         <span class="card-badge">Fun</span>
         <span class="card-cat">Desktop</span>
       </div>
@@ -1036,10 +661,22 @@
           <div class="form-error">Please enter your name</div>
         </div>
         <div class="form-group">
+          <label for="customerPhone">Phone / WhatsApp *</label>
+          <input type="tel" id="customerPhone" name="customerPhone" placeholder="e.g. 01096677140" required autocomplete="tel">
+          <div class="form-error">Please enter your phone number</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
           <label for="customText">Custom Text *</label>
           <input type="text" id="customText" name="customText" placeholder="Name or text to print" maxlength="30" required>
           <div class="form-error">Please enter the text to print</div>
           <div class="char-count"><span id="charCount">0</span>/30</div>
+        </div>
+        <div class="form-group">
+          <label for="color">Preferred Color</label>
+          <input type="text" id="color" name="color" placeholder="e.g. Black, Gold, White…">
         </div>
       </div>
 
@@ -1111,49 +748,27 @@
 
 <footer>
   <div class="footer-logo">Forg3d<em>.</em>Art</div>
+  <div class="footer-socials">
+    <a href="https://www.instagram.com/forg3d.art" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="https://www.facebook.com/forg3d.art" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.tiktok.com/@forg3d.art" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+    <a href="https://wa.me/201096677140" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  </div>
   <div class="footer-text">© 2026 ALL RIGHTS RESERVED · MADE IN EGYPT 🇪🇬</div>
   <div class="footer-text" style="color:var(--gold-dim);">3D PRINT · HANDCRAFTED · ARTIST FINISH</div>
 </footer>
 
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lbClose" aria-label="Close lightbox">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-arrow lightbox-next" id="lbNext" aria-label="Next image">&#8250;</button>
+</div>
+
+<script src="main.js"></script>
 <script>
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) t.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // Filter tabs
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-      const f = btn.dataset.filter;
-      document.querySelectorAll('.product-card').forEach(c => {
-        c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f);
-      });
-    });
-  });
-
-  // Scroll reveal
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal, .step, .product-card').forEach(el => {
-    if (!el.classList.contains('reveal')) {
-      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    }
-    obs.observe(el);
-  });
-
-  // Ripple on CTA buttons
+  // Ripple on customize buttons
   document.querySelectorAll('.btn-customize').forEach(btn => {
     btn.addEventListener('click', function(e) {
       const r = this.getBoundingClientRect();
@@ -1176,35 +791,23 @@
   // Form submission → WhatsApp
   document.getElementById('giftForm').addEventListener('submit', function(e) {
     e.preventDefault();
-
-    // Clear previous errors
     this.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
 
     const itemType = document.getElementById('itemType');
     const customerName = document.getElementById('customerName');
+    const customerPhone = document.getElementById('customerPhone');
     const customText = document.getElementById('customText');
     const quantity = document.getElementById('quantity');
     const color = document.getElementById('color');
     const notes = document.getElementById('notes');
 
     let valid = true;
-
-    if (!itemType.value) {
-      itemType.closest('.form-group').classList.add('has-error');
-      valid = false;
-    }
-    if (!customerName.value.trim()) {
-      customerName.closest('.form-group').classList.add('has-error');
-      valid = false;
-    }
-    if (!customText.value.trim()) {
-      customText.closest('.form-group').classList.add('has-error');
-      valid = false;
-    }
-
+    if (!itemType.value) { itemType.closest('.form-group').classList.add('has-error'); valid = false; }
+    if (!customerName.value.trim()) { customerName.closest('.form-group').classList.add('has-error'); valid = false; }
+    if (!customerPhone.value.trim()) { customerPhone.closest('.form-group').classList.add('has-error'); valid = false; }
+    if (!customText.value.trim()) { customText.closest('.form-group').classList.add('has-error'); valid = false; }
     if (!valid) return;
 
-    // Sanitize inputs — strip any HTML tags
     function sanitize(str) {
       const div = document.createElement('div');
       div.textContent = str;
@@ -1213,6 +816,7 @@
 
     const safeItem = sanitize(itemType.value);
     const safeName = sanitize(customerName.value.trim());
+    const safePhone = sanitize(customerPhone.value.trim());
     const safeText = sanitize(customText.value.trim());
     const safeQty = Math.max(1, parseInt(quantity.value) || 1);
     const safeColor = sanitize(color.value.trim());
@@ -1224,18 +828,15 @@
     if (safeColor) message += `Preferred color: ${safeColor}\n`;
     if (safeNotes) message += `Notes: ${safeNotes}\n`;
     message += `\nName: ${safeName}`;
+    message += `\nPhone: ${safePhone}`;
 
     const waUrl = 'https://wa.me/201096677140?text=' + encodeURIComponent(message);
     window.open(waUrl, '_blank', 'noopener,noreferrer');
 
-    // Track conversion
-    gtag('event', 'gift_order_whatsapp', {
-      event_category: 'engagement',
-      event_label: safeItem
-    });
+    gtag('event', 'gift_order_whatsapp', { event_category: 'engagement', event_label: safeItem });
   });
 
-  // Card image galleries
+  // Card image galleries (dot navigation)
   document.querySelectorAll('.card-gallery').forEach(gallery => {
     const imgs = gallery.querySelectorAll('img');
     const dots = gallery.querySelectorAll('.gallery-dot');
@@ -1248,54 +849,6 @@
         dot.classList.add('active');
       });
     });
-  });
-
-  // Filter tab count badges
-  document.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('js-enabled');
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      const filter = btn.dataset.filter;
-      const count = filter === 'all'
-        ? document.querySelectorAll('.product-card').length
-        : document.querySelectorAll(`.product-card[data-cat="${filter}"]`).length;
-      btn.innerHTML += ` <span style="opacity:0.6;font-size:9px;">(${count})</span>`;
-    });
-  });
-
-  // Hamburger menu
-  const hamburger = document.getElementById('navHamburger');
-  const navUl = document.querySelector('nav ul');
-  hamburger.addEventListener('click', () => {
-    const isOpen = navUl.classList.toggle('mobile-open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-  document.querySelectorAll('nav ul a').forEach(a => {
-    a.addEventListener('click', () => {
-      navUl.classList.remove('mobile-open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-      document.body.style.overflow = '';
-    });
-  });
-  document.addEventListener('click', (e) => {
-    if (navUl.classList.contains('mobile-open') && !navUl.contains(e.target) && !hamburger.contains(e.target)) {
-      navUl.classList.remove('mobile-open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-      document.body.style.overflow = '';
-    }
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navUl.classList.contains('mobile-open')) {
-      navUl.classList.remove('mobile-open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-      document.body.style.overflow = '';
-      hamburger.focus();
-    }
   });
 </script>
 <noscript>

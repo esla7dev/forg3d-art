@@ -29,12 +29,30 @@ Arabic & English engraving available. Orders placed via WhatsApp form.
 
 ## 🛠️ Tech Stack
 
-- Single-file HTML/CSS/Vanilla JS (per page)
+- Shared CSS (`styles.css`) & JS (`main.js`) across pages
 - Zero dependencies, zero build tools
+- Custom 404 error page (`404.html`)
 - Google Analytics 4 (GA4) — conversion tracking on WhatsApp clicks
 - Schema.org structured data (Organization, Product, FAQPage, ItemList, BreadcrumbList)
+- Lightbox image viewer with keyboard navigation & focus trap
+- Back-to-top button, hamburger mobile menu, scroll-reveal animations
 
-## 📦 Images
+## 📦 Project Structure
+
+| File | Purpose |
+|------|--------|
+| `index.html` | Cosplay masks landing page |
+| `custom-gifts.html` | Custom gifts page with order form |
+| `styles.css` | Shared CSS (variables, layout, components) |
+| `main.js` | Shared JS (lightbox, hamburger, scroll reveal, back-to-top) |
+| `404.html` | Custom error page |
+| `favicon.ico` | 32×32 favicon |
+| `logo.png` | Brand logo (400×400) |
+| `forg3dart_512.png` | PWA/OG image (512×512) |
+| `sitemap.xml` | XML sitemap |
+| `robots.txt` | Crawler rules |
+
+### Images
 
 - Mask images: `/images/` — 2 images per product, WebP/JPEG/PNG
 - Gift images: `/images/gifts/` — product photos (JPG/GIF)

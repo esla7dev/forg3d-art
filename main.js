@@ -12,6 +12,7 @@ if ('serviceWorker' in navigator) {
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
+  if (a.getAttribute('href') === '#') return;
   a.addEventListener('click', e => {
     e.preventDefault();
     const t = document.querySelector(a.getAttribute('href'));
@@ -39,7 +40,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08 });
-document.querySelectorAll('.reveal, .step, .product-card').forEach(el => {
+document.querySelectorAll('.reveal, .product-card').forEach(el => {
   if (!el.classList.contains('reveal')) {
     el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -64,7 +65,9 @@ function openLightbox(src, alt) {
   currentLightboxIndex = allLightboxImages.findIndex(i => i.src === src || i.getAttribute('src') === src);
   const closeBtn = lb.querySelector('.lightbox-close');
   if (closeBtn) closeBtn.focus();
-  gtag('event', 'image_view', { event_category: 'engagement', event_label: alt });
+  if (typeof gtag === 'function') {
+    gtag('event', 'image_view', { event_category: 'engagement', event_label: alt });
+  }
 }
 
 function closeLightbox() {
@@ -138,6 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
       : document.querySelectorAll(`.product-card[data-cat="${filter}"]`).length;
     btn.innerHTML += ` <span style="opacity:0.6;font-size:9px;">(${count})</span>`;
   });
+
+  // Category deep-links: #<data-filter value> activates the matching filter
+  // tab (e.g. custom-gifts.html#islamic-decor from the gift guides).
+  const hashFilter = decodeURIComponent(location.hash.slice(1));
+  if (/^[a-z][a-z0-9-]*$/.test(hashFilter) && hashFilter !== 'all' && !document.getElementById(hashFilter)) {
+    const tab = document.querySelector(`.filter-btn[data-filter="${hashFilter}"]`);
+    if (tab) {
+      tab.click();
+      const section = tab.closest('section');
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 });
 
 // Hamburger menu (only when present)

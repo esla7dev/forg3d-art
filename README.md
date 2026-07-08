@@ -61,12 +61,13 @@ Arabic & English engraving available. Orders placed via WhatsApp form.
 | `sitemap.xml` | XML sitemap |
 | `robots.txt` | Crawler rules |
 | `scripts/qa_check.py` | Zero-dependency QA checker (`python3 scripts/qa_check.py`) |
-| `.github/workflows/` | CI: QA + HTML validation, optional GitHub Pages deploy |
+| `.github/workflows/` | CI: QA + HTML validation |
+| `wrangler.jsonc` | Cloudflare Workers static-assets deploy config |
 
 ### Images
 
 - Mask images: `/images/` — 2 images per product, WebP/JPEG/PNG
-- Gift images: `/images/gifts/` — product photos (JPG/GIF)
+- Gift images: `/images/gifts/` — product photos (JPG/WebP)
 
 ## 📞 Order
 

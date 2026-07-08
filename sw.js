@@ -4,12 +4,18 @@
    so content stays fresh while the site works offline.
    Bump CACHE_VERSION whenever styles.css / main.js change.
    ============================================================ */
-const CACHE_VERSION = 'forg3d-v1';
+const CACHE_VERSION = 'forg3d-v2';
 const PRECACHE = [
   '/',
   '/index.html',
   '/custom-gifts.html',
   '/guides.html',
+  '/guide-birthdays.html',
+  '/guide-weddings.html',
+  '/guide-couples.html',
+  '/guide-corporate.html',
+  '/guide-islamic.html',
+  '/guide-diaspora.html',
   '/portfolio.html',
   '/info.html',
   '/404.html',
@@ -19,7 +25,8 @@ const PRECACHE = [
   '/favicon.ico',
   '/logo.png',
   '/icon-192.png',
-  '/icon-512.png'
+  '/icon-512.png',
+  '/icon-maskable-512.png'
 ];
 
 self.addEventListener('install', event => {

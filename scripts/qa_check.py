@@ -4,6 +4,8 @@ Forg3d.Art static-site QA checker (zero dependencies).
 
 Validates, across every *.html page in the repo root:
   - internal links and asset references (href/src/link) resolve to real files
+  - fragment links (#foo and page.html#foo) resolve to an id or a
+    data-filter value (category deep-links activated by main.js) in the target page
   - no duplicate id attributes within a page
   - required <head> tags are present (<title>, canonical, viewport)
   - referenced images actually exist on disk
@@ -25,6 +27,7 @@ class PageParser(HTMLParser):
     def __init__(self):
         super().__init__()
         self.ids = []
+        self.filters = set()    # data-filter values (valid deep-link fragments)
         self.refs = []          # (attr_source, value)
         self.has_title = False
         self.has_canonical = False
@@ -35,6 +38,8 @@ class PageParser(HTMLParser):
         d = dict(attrs)
         if "id" in d and d["id"]:
             self.ids.append(d["id"])
+        if d.get("data-filter"):
+            self.filters.add(d["data-filter"])
         if tag == "a" and d.get("href"):
             self.refs.append(("a[href]", d["href"]))
         if tag in ("img", "script", "source") and d.get("src"):
@@ -59,12 +64,16 @@ class PageParser(HTMLParser):
             self.has_title = True
 
 
-def check_page(path):
-    errors = []
+def parse_page(path):
     with open(path, encoding="utf-8") as fh:
         html = fh.read()
     p = PageParser()
     p.feed(html)
+    return p
+
+
+def check_page(path, p, anchors_by_page):
+    errors = []
     rel = os.path.basename(path)
 
     # duplicate ids
@@ -85,16 +94,26 @@ def check_page(path):
     # resolve references
     for src, value in p.refs:
         v = value.strip()
-        if not v or v.startswith("#") or v.lower().startswith(SKIP_SCHEMES):
+        if not v or v.lower().startswith(SKIP_SCHEMES):
+            continue
+        if v.startswith("#"):
+            frag = v[1:]
+            if frag and frag not in anchors_by_page.get(rel, set()):
+                errors.append(f"broken fragment {src} -> {value}")
             continue
         if urlparse(v).netloc:
             continue
-        target = urldefrag(v)[0].split("?")[0]
+        target, frag = urldefrag(v)
+        target = target.split("?")[0]
         if not target:
             continue
         fs = os.path.join(ROOT, target.lstrip("/"))
         if not os.path.exists(fs):
             errors.append(f"broken {src} -> {value}")
+        elif frag:
+            page = os.path.basename(target)
+            if page in anchors_by_page and frag not in anchors_by_page[page]:
+                errors.append(f"broken fragment {src} -> {value}")
     return errors
 
 
@@ -103,9 +122,14 @@ def main():
     if not pages:
         print("No HTML pages found.")
         return 1
+    parsed = {path: parse_page(path) for path in pages}
+    anchors_by_page = {
+        os.path.basename(path): set(p.ids) | p.filters
+        for path, p in parsed.items()
+    }
     total = 0
     for path in pages:
-        errs = check_page(path)
+        errs = check_page(path, parsed[path], anchors_by_page)
         name = os.path.basename(path)
         if errs:
             total += len(errs)

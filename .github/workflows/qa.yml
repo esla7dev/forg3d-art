@@ -29,6 +29,9 @@ jobs:
       - name: HTML validation (Nu validator)
         run: |
           python3 -m pip install --quiet html5validator
+          # The bundled W3C CSS validator predates the modern "inset" and
+          # "aspect-ratio" properties, so those errors are false positives.
           html5validator --root . --also-check-css \
             --ignore-re 'Attribute .* not allowed' \
+            --ignore-re 'Property "(inset|aspect-ratio)" doesn.t exist' \
             --log INFO

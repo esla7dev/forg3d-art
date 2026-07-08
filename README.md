@@ -31,11 +31,14 @@ Arabic & English engraving available. Orders placed via WhatsApp form.
 
 - Shared CSS (`styles.css`) & JS (`main.js`) across pages
 - Zero dependencies, zero build tools
+- **PWA** — installable via `manifest.json` + offline-capable service worker (`sw.js`)
 - Custom 404 error page (`404.html`)
-- Google Analytics 4 (GA4) — conversion tracking on WhatsApp clicks
-- Schema.org structured data (Organization, Product, FAQPage, ItemList, BreadcrumbList)
+- Google Analytics 4 (GA4) with **Consent Mode** — analytics load only after opt-in; conversion tracking on all WhatsApp clicks
+- Schema.org structured data (Organization + `sameAs`, Product, FAQPage, ItemList, BreadcrumbList, LocalBusiness)
 - Lightbox image viewer with keyboard navigation & focus trap
-- Back-to-top button, hamburger mobile menu, scroll-reveal animations
+- Back-to-top button, hamburger mobile menu (all pages), scroll-reveal animations
+- Cookie-consent banner, optimized/compressed imagery (~72% smaller)
+- CI: automated link/id/metadata QA + HTML validation on every push (`.github/workflows/qa.yml`)
 
 ## 📦 Project Structure
 
@@ -43,14 +46,22 @@ Arabic & English engraving available. Orders placed via WhatsApp form.
 |------|--------|
 | `index.html` | Cosplay masks landing page |
 | `custom-gifts.html` | Custom gifts page with order form |
-| `styles.css` | Shared CSS (variables, layout, components) |
-| `main.js` | Shared JS (lightbox, hamburger, scroll reveal, back-to-top) |
+| `guides.html` | Gift-guides hub linking all 6 guides |
+| `guide-*.html` | 6 SEO gift guides (birthdays, weddings, corporate, couples, islamic, diaspora) |
+| `portfolio.html` | Testimonials & case studies |
+| `info.html` | Shipping, returns, privacy & ordering info |
+| `styles.css` | Shared CSS (variables, layout, components, consent banner) |
+| `main.js` | Shared JS (SW registration, lightbox, hamburger, WhatsApp tracking, consent, back-to-top) |
+| `sw.js` | Service worker (offline shell caching) |
+| `manifest.json` | PWA manifest |
 | `404.html` | Custom error page |
-| `favicon.ico` | 32×32 favicon |
+| `favicon.ico` | Favicon · `icon-192/512.png`, `icon-maskable-512.png` | PWA icons |
 | `logo.png` | Brand logo (400×400) |
-| `forg3dart_512.png` | PWA/OG image (512×512) |
+| `forg3dart_512.png` | OG image (512×512) |
 | `sitemap.xml` | XML sitemap |
 | `robots.txt` | Crawler rules |
+| `scripts/qa_check.py` | Zero-dependency QA checker (`python3 scripts/qa_check.py`) |
+| `.github/workflows/` | CI: QA + HTML validation, optional GitHub Pages deploy |
 
 ### Images
 

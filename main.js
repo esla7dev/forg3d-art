@@ -3,6 +3,13 @@
    Shared across index.html & custom-gifts.html
    ============================================================ */
 
+// Register service worker for PWA / offline support
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
@@ -69,53 +76,57 @@ function closeLightbox() {
 const lbCloseBtn = document.querySelector('.lightbox-close');
 if (lbCloseBtn) lbCloseBtn.addEventListener('click', closeLightbox);
 
-// Lightbox focus trap
-document.getElementById('lightbox').addEventListener('keydown', function(e) {
-  if (e.key !== 'Tab') return;
-  const focusable = this.querySelectorAll('button');
-  const first = focusable[0], last = focusable[focusable.length - 1];
-  if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
-  else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
-});
+// Lightbox listeners (only wire up when a lightbox exists on the page)
+const lightboxEl = document.getElementById('lightbox');
+if (lightboxEl) {
+  // Focus trap
+  lightboxEl.addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    const focusable = this.querySelectorAll('button');
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+    else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
+  });
 
-// Lightbox keyboard navigation
-document.addEventListener('keydown', (e) => {
-  const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('active')) return;
-  if (e.key === 'Escape') { closeLightbox(); return; }
-  if (e.key === 'ArrowRight' && currentLightboxIndex < allLightboxImages.length - 1) {
-    currentLightboxIndex++;
-    document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
-    document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
-  }
-  if (e.key === 'ArrowLeft' && currentLightboxIndex > 0) {
-    currentLightboxIndex--;
-    document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
-    document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
-  }
-});
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightboxEl.classList.contains('active')) return;
+    if (e.key === 'Escape') { closeLightbox(); return; }
+    if (e.key === 'ArrowRight' && currentLightboxIndex < allLightboxImages.length - 1) {
+      currentLightboxIndex++;
+      document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
+      document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
+    }
+    if (e.key === 'ArrowLeft' && currentLightboxIndex > 0) {
+      currentLightboxIndex--;
+      document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
+      document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
+    }
+  });
 
-// Lightbox backdrop click
-document.getElementById('lightbox').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeLightbox();
-});
+  // Backdrop click
+  lightboxEl.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeLightbox();
+  });
 
-// Lightbox arrow buttons
-document.getElementById('lbPrev').addEventListener('click', () => {
-  if (currentLightboxIndex > 0) {
-    currentLightboxIndex--;
-    document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
-    document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
-  }
-});
-
-document.getElementById('lbNext').addEventListener('click', () => {
-  if (currentLightboxIndex < allLightboxImages.length - 1) {
-    currentLightboxIndex++;
-    document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
-    document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
-  }
-});
+  // Arrow buttons
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  if (lbPrev) lbPrev.addEventListener('click', () => {
+    if (currentLightboxIndex > 0) {
+      currentLightboxIndex--;
+      document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
+      document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
+    }
+  });
+  if (lbNext) lbNext.addEventListener('click', () => {
+    if (currentLightboxIndex < allLightboxImages.length - 1) {
+      currentLightboxIndex++;
+      document.getElementById('lightbox-img').src = allLightboxImages[currentLightboxIndex].src;
+      document.getElementById('lightbox-img').alt = allLightboxImages[currentLightboxIndex].alt;
+    }
+  });
+}
 
 // Progressive enhancement + filter count badges
 document.addEventListener('DOMContentLoaded', () => {
@@ -129,41 +140,89 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Hamburger menu
+// Hamburger menu (only when present)
 const hamburger = document.getElementById('navHamburger');
 const navUl = document.querySelector('nav ul');
-hamburger.addEventListener('click', () => {
-  const isOpen = navUl.classList.toggle('mobile-open');
-  hamburger.classList.toggle('open', isOpen);
-  hamburger.setAttribute('aria-expanded', isOpen);
-  hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-document.querySelectorAll('nav ul a').forEach(a => {
+if (hamburger && navUl) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = navUl.classList.toggle('mobile-open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('nav ul a').forEach(a => {
+    a.addEventListener('click', () => {
+      navUl.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (navUl.classList.contains('mobile-open') && !navUl.contains(e.target) && !hamburger.contains(e.target)) {
+      navUl.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navUl.classList.contains('mobile-open')) {
+      navUl.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+      hamburger.focus();
+    }
+  });
+}
+
+// Generic WhatsApp conversion tracking.
+// Fires on every wa.me link except product order buttons (.btn-order), which
+// already track themselves with a product-specific label on index.html.
+document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+  if (a.classList.contains('btn-order')) return;
   a.addEventListener('click', () => {
-    navUl.classList.remove('mobile-open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', false);
-    document.body.style.overflow = '';
+    if (typeof gtag !== 'function') return;
+    const label = a.dataset.wa || a.getAttribute('aria-label') || a.textContent.trim() || 'whatsapp_link';
+    gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: label });
   });
 });
-document.addEventListener('click', (e) => {
-  if (navUl.classList.contains('mobile-open') && !navUl.contains(e.target) && !hamburger.contains(e.target)) {
-    navUl.classList.remove('mobile-open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', false);
-    document.body.style.overflow = '';
+
+// Cookie consent banner (Google Consent Mode).
+// Analytics stays denied until the visitor accepts; choice persisted in localStorage.
+(function() {
+  let stored = null;
+  try { stored = localStorage.getItem('forg3d_consent'); } catch (e) { return; }
+  if (stored === 'granted' || stored === 'denied') return; // already chose
+
+  const banner = document.createElement('div');
+  banner.className = 'consent-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-label', 'Cookie consent');
+  banner.innerHTML =
+    '<div class="consent-text">We use cookies for analytics to improve the site. ' +
+    'You can accept or decline — declining keeps everything working. ' +
+    '<a href="info.html#info">Learn more</a>.</div>' +
+    '<div class="consent-actions">' +
+    '<button class="consent-btn decline" type="button">Decline</button>' +
+    '<button class="consent-btn accept" type="button">Accept</button>' +
+    '</div>';
+  document.body.appendChild(banner);
+  requestAnimationFrame(() => banner.classList.add('show'));
+
+  function choose(value) {
+    try { localStorage.setItem('forg3d_consent', value); } catch (e) {}
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { analytics_storage: value === 'granted' ? 'granted' : 'denied' });
+    }
+    banner.classList.remove('show');
+    setTimeout(() => banner.remove(), 400);
   }
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && navUl.classList.contains('mobile-open')) {
-    navUl.classList.remove('mobile-open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', false);
-    document.body.style.overflow = '';
-    hamburger.focus();
-  }
-});
+  banner.querySelector('.accept').addEventListener('click', () => choose('granted'));
+  banner.querySelector('.decline').addEventListener('click', () => choose('denied'));
+})();
 
 // Back to top button
 (function() {

@@ -1,0 +1,24 @@
+{
+  "name": "Forg3d.Art — 3D Printed Gifts & Cosplay Masks",
+  "short_name": "Forg3d.Art",
+  "description": "Custom 3D printed gifts and handcrafted cosplay masks, made in Egypt. Order via WhatsApp.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Custom Gifts", "url": "/custom-gifts.html" },
+    { "name": "Cosplay Masks", "url": "/index.html#collection" },
+    { "name": "Gift Guides", "url": "/guides.html" }
+  ]
+}

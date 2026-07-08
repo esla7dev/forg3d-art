@@ -14,8 +14,11 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://forg3d.art/portfolio.html">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X6Y6H31ESN"></script>
-<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-X6Y6H31ESN');</script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());   gtag('consent', 'default', { 'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage': (window.localStorage && localStorage.getItem('forg3d_consent')==='granted') ? 'granted' : 'denied' });
+  gtag('config', 'G-X6Y6H31ESN');</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -91,12 +94,20 @@
 
 <!-- NAVIGATION -->
 <nav>
-  <a href="custom-gifts.html" class="logo"><span style="color: var(--white);">FORG</span><em>3D</em><span style="color: var(--white);">.ART</span></a>
+  <a href="index.html" class="logo">Forg3d<em>.</em>Art</a>
   <ul>
     <li><a href="custom-gifts.html">CUSTOM GIFTS</a></li>
-    <li><a href="guide-birthdays.html">GUIDES</a></li>
-    <li><a href="custom-gifts.html#customize" class="nav-cta">Order Now</a></li>
+    <li><a href="guides.html">GUIDES</a></li>
+    <li><a href="portfolio.html" class="active-link">PORTFOLIO</a></li>
+    <li><a href="index.html#collection">MASKS</a></li>
+    <li><a href="index.html#contact">CONTACT</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <a href="info.html" style="color: var(--gold); text-decoration: none;">Shipping &amp; Info</a> · <a href="https://wa.me/201096677140" target="_blank" rel="noopener noreferrer" class="nav-cta" data-wa="nav">Order Now</a>
 </nav>
 
 <!-- HERO -->
@@ -267,7 +278,7 @@
   <p style="color: var(--iron); font-size: 13px; margin: 0 0 20px 0;">© 2026 Forg3d.Art. Handcrafted in Cairo, shipped nationwide & worldwide.</p>
   <p style="color: var(--steel); font-size: 12px; margin: 0;">
     <a href="custom-gifts.html" style="color: var(--gold); text-decoration: none;">Custom Gifts</a> · 
-    <a href="guide-birthdays.html" style="color: var(--gold); text-decoration: none;">Gift Guides</a> · 
+    <a href="guides.html" style="color: var(--gold); text-decoration: none;">Gift Guides</a> · 
     <a href="https://wa.me/201096677140" target="_blank" style="color: var(--gold); text-decoration: none;">WhatsApp: +20 109 667 7140</a>
   </p>
 </footer>

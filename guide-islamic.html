@@ -47,7 +47,7 @@
   #gifts-guide { background: var(--black); }
   .guide-intro { max-width: 1300px; margin: 0 auto 60px; }
   .guide-intro p { font-size: 16px; color: var(--iron); line-height: 1.8; max-width: 700px; margin-bottom: 24px; }
-  .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1300px; margin: 0 auto; }
+  .guide-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px; max-width: 1300px; margin: 0 auto; }
   .guide-card { background: var(--panel); border: 1px solid var(--border); padding: 40px 28px; text-align: center; display: flex; flex-direction: column; gap: 20px; position: relative; }
   .guide-card:hover { border-color: var(--gold); background: var(--dark); }
   .guide-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.4s; z-index: 1; }
@@ -133,6 +133,12 @@
         <h3 class="guide-card-title">Custom Islamic Gifts</h3>
         <p class="guide-card-desc">Personalized Islamic items with your choice of verses, dates or meaningful messages.</p>
         <a href="custom-gifts.html#customize" class="guide-card-cta">Customize →</a>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-icon">🧪</div>
+        <h3 class="guide-card-title">Maker Lab Lightboxes</h3>
+        <p class="guide-card-desc">Glowing custom lightboxes and Chroma Canvas paintings featuring Islamic patterns, verses, or family names.</p>
+        <a href="custom-gifts.html#maker-lab" class="guide-card-cta">View →</a>
       </div>
     </div>
   </div>

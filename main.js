@@ -31,7 +31,8 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.setAttribute('aria-pressed', 'true');
     const f = btn.dataset.filter;
     document.querySelectorAll('.product-card').forEach(c => {
-      c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f);
+      const categories = (c.dataset.cat || '').split(' ');
+      c.classList.toggle('hidden', f !== 'all' && !categories.includes(f));
     });
   });
 });
@@ -136,9 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('js-enabled');
   document.querySelectorAll('.filter-btn').forEach(btn => {
     const filter = btn.dataset.filter;
-    const count = filter === 'all'
-      ? document.querySelectorAll('.product-card').length
-      : document.querySelectorAll(`.product-card[data-cat="${filter}"]`).length;
+    let count = 0;
+    if (filter === 'all') {
+      count = document.querySelectorAll('.product-card').length;
+    } else {
+      document.querySelectorAll('.product-card').forEach(c => {
+        const cats = (c.dataset.cat || '').split(' ');
+        if (cats.includes(filter)) count++;
+      });
+    }
     btn.innerHTML += ` <span style="opacity:0.6;font-size:9px;">(${count})</span>`;
   });
 

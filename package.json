@@ -1,5 +1,10 @@
 {
   "name": "forg3d-art",
-  "version": "3.0.0",
-  "private": true
+  "version": "4.0.0",
+  "private": true,
+  "scripts": {
+    "qa": "python scripts/qa_check.py",
+    "check:js": "node --check main.js && node --check sw.js",
+    "test": "npm run qa && npm run check:js"
+  }
 }

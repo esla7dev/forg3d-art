@@ -1,7 +1,7 @@
 {
-  "name": "Forg3d.Art — 3D Printed Gifts & Cosplay Masks",
+  "name": "Forg3d.Art — 3D Printed Cosplay Masks & Helmets",
   "short_name": "Forg3d.Art",
-  "description": "Custom 3D printed gifts and handcrafted cosplay masks, made in Egypt. Order via WhatsApp.",
+  "description": "Wearable 3D printed cosplay masks and helmets, handcrafted and hand-finished in Egypt.",
   "lang": "en",
   "dir": "ltr",
   "start_url": "/",
@@ -17,8 +17,8 @@
     { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "Custom Gifts", "url": "/custom-gifts.html" },
-    { "name": "Cosplay Masks", "url": "/index.html#collection" },
-    { "name": "Gift Guides", "url": "/guides.html" }
+    { "name": "Mask Collection", "url": "/index.html#collection" },
+    { "name": "Custom Build", "url": "/#contact" },
+    { "name": "Shipping & Info", "url": "/info.html" }
   ]
 }

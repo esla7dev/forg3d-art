@@ -3,33 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Forg3d.Art — Custom 3D printed gifts & handcrafted cosplay masks in Egypt. Personalized keychains, family signs, name tags & more. Nationwide delivery.">
-<meta name="keywords" content="custom gifts Egypt, personalized 3D gifts Cairo, 3D printed masks, cosplay masks Egypt, family name signs Egypt, handmade gifts Egypt, Forg3d.Art">
+<meta name="description" content="Forg3d.Art creates premium 3D printed cosplay masks and helmets in Egypt. Wearable, hand-finished builds for collectors, conventions, and custom characters, with nationwide and international shipping.">
+<meta name="keywords" content="cosplay masks Egypt, 3D printed helmets Egypt, wearable cosplay masks Cairo, custom cosplay helmet, handcrafted masks Egypt, Forg3d.Art">
 <meta name="author" content="Forg3d.Art">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Forg3d.Art — Custom 3D Printed Gifts & Cosplay Masks">
-<meta property="og:description" content="Custom 3D printed gifts & handcrafted cosplay masks. Personalized keychains, family signs, name tags & more. Handcrafted in Cairo, shipped nationwide.">
+<meta property="og:title" content="Forg3d.Art — 3D Printed Cosplay Masks & Helmets">
+<meta property="og:description" content="Premium wearable cosplay masks and helmets, precision printed and hand-finished in Egypt. Custom character builds and international shipping available.">
 <meta property="og:image" content="https://forg3d.art/forg3dart_512.png">
 <meta property="og:url" content="https://forg3d.art">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://forg3d.art">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Forg3d.Art — Custom Gifts & Cosplay Masks">
-<meta name="twitter:description" content="Custom 3D printed gifts & handcrafted cosplay masks. Personalized & handcrafted in Cairo.">
+<meta name="twitter:title" content="Forg3d.Art — Cosplay Masks & Helmets">
+<meta name="twitter:description" content="Wearable 3D printed cosplay masks and helmets, handcrafted in Egypt for collectors and conventions.">
 <meta name="twitter:image" content="https://forg3d.art/forg3dart_512.png">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="forg3dart_small.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0a0a">
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X6Y6H31ESN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-    gtag('consent', 'default', { 'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage': (window.localStorage && localStorage.getItem('forg3d_consent')==='granted') ? 'granted' : 'denied' });
-  gtag('config', 'G-X6Y6H31ESN');
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,7 +28,7 @@
   "name": "Forg3d.Art",
   "url": "https://forg3d.art",
   "logo": "https://forg3d.art/logo.png",
-  "description": "Premium 3D printed cosplay masks and accessories, handcrafted in Egypt.",
+  "description": "Premium wearable 3D printed cosplay masks and helmets, handcrafted and hand-finished in Egypt.",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "EG",
@@ -74,7 +65,7 @@
       "name": "Do you ship outside Cairo?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, delivery is available across all of Egypt including Cairo, Beni Suef, Alexandria, and nationwide."
+        "text": "Yes. We deliver across Egypt and ship internationally, with rates and timing quoted before each order."
       }
     },
     {
@@ -225,7 +216,7 @@
   ]
 }
 </script>
-<title>Custom 3D Printed Gifts & Cosplay Masks Egypt | Forg3d.Art</title>
+<title>3D Printed Cosplay Masks & Helmets Egypt | Forg3d.Art</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://wa.me">
@@ -248,12 +239,16 @@
 
   #collection { background: var(--black); }
 
-  .card-img img {
+  .lightbox-trigger {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    padding: 0; border: 0; background: transparent; cursor: zoom-in;
+  }
+  .lightbox-trigger img {
     width: 100%; height: 100%; object-fit: contain;
     transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
-    filter: brightness(0.9); cursor: pointer;
+    filter: brightness(0.9);
   }
-  .card-img img:hover { transform: scale(1.06); filter: brightness(1); }
+  .lightbox-trigger:hover img { transform: scale(1.06); filter: brightness(1); }
 
   /* Image Gallery Navigation */
   .img-nav {
@@ -280,8 +275,6 @@
   /* SKELETON LOADER */
   .skeleton { background: linear-gradient(90deg, #2a2a2a 25%, #3d3d3d 50%, #2a2a2a 75%); background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; }
   @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-  .card-img.skeleton { height: 300px; }
-
   .card-badge { background: var(--ember); color: var(--white); }
 
   .card-stock {
@@ -427,25 +420,26 @@
 </head>
 <body>
 
-<a href="#collection" class="skip-to-content">Skip to Collection</a>
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-<nav>
+<nav aria-label="Primary navigation">
   <a href="index.html" class="logo">Forg3d<em>.</em>Art</a>
-  <ul>
-    <li><a href="custom-gifts.html">CUSTOM GIFTS</a></li>
-    <li><a href="guides.html">GUIDES</a></li>
-    <li><a href="portfolio.html">PORTFOLIO</a></li>
+  <ul id="primaryNavigation">
     <li><a href="#collection" class="active-link">MASKS</a></li>
-    <li><a href="#contact">CONTACT</a></li>
+    <li><a href="#craft-process">CRAFT &amp; PROCESS</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="info.html">SHIPPING &amp; INFO</a></li>
+    <li><a href="#contact">ORDER</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNavigation">
     <span></span>
     <span></span>
     <span></span>
   </button>
-  <a href="info.html" style="color: var(--gold); text-decoration: none;">Shipping &amp; Info</a> · <a href="https://wa.me/201096677140" target="_blank" rel="noopener noreferrer" class="nav-cta" data-wa="nav">Order Now</a>
+  <a href="https://wa.me/201096677140" target="_blank" rel="noopener noreferrer" class="nav-cta" data-wa="nav">Order Now</a>
 </nav>
 
+<main id="main-content">
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -480,9 +474,9 @@
 <section class="trust-bar">
   <div class="trust-bar-inner">
     <div class="trust-item"><span class="trust-icon">✔</span> Handcrafted in Egypt</div>
-    <div class="trust-item"><span class="trust-icon">✔</span> Custom Gifts & Cosplay</div>
+    <div class="trust-item"><span class="trust-icon">✔</span> Masks &amp; Helmets</div>
     <div class="trust-item"><span class="trust-icon">✔</span> Nationwide Delivery</div>
-    <div class="trust-item"><span class="trust-icon">✔</span> WhatsApp Ordering</div>
+    <div class="trust-item"><span class="trust-icon">✔</span> International Shipping</div>
   </div>
 </section>
 
@@ -504,7 +498,7 @@
   <div class="products-grid">
 
     <div class="product-card reveal" data-cat="sci-fi">
-      <div class="card-img" data-images='["images/optimus-prime-cosplay-mask-egypt.jpeg","images/optimus-prime-cosplay-mask-egypt-2.jpg"]' data-current="0"><img src="images/optimus-prime-cosplay-mask-egypt.jpeg" alt="Optimus Prime cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-cat">Sci-Fi</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/optimus-prime-cosplay-mask-egypt.jpeg","images/optimus-prime-cosplay-mask-egypt-2.jpg"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Optimus Prime mask"><img src="images/optimus-prime-cosplay-mask-egypt.jpeg" alt="Optimus Prime cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-cat">Sci-Fi</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Optimus Prime Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Optimus Prime cosplay helmet with LED eyes, 3D printed and hand-finished in Egypt. Perfect for conventions, photoshoots, and collectors looking for a high-quality Transformers build.</p>
@@ -522,7 +516,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="fantasy">
-      <div class="card-img" data-images='["images/sauron-cosplay-mask-egypt.jpg","images/sauron-cosplay-mask-egypt-2.jpg"]' data-current="0"><img src="images/sauron-cosplay-mask-egypt.jpg" alt="Sauron cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-cat">Fantasy</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/sauron-cosplay-mask-egypt.jpg","images/sauron-cosplay-mask-egypt-2.jpg"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Sauron mask"><img src="images/sauron-cosplay-mask-egypt.jpg" alt="Sauron cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-cat">Fantasy</span><span class="card-stock out-of-stock">Out of Stock</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Dark Lord Sauron Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Dark Lord Sauron cosplay helmet, 3D printed and hand-finished in Egypt. Screen-accurate design perfect for Lord of the Rings conventions and serious collectors.</p>
@@ -540,7 +534,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="superhero">
-      <div class="card-img" data-images='["images/wolverine-cosplay-mask-egypt.webp","images/wolverine-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/wolverine-cosplay-mask-egypt.webp" alt="Wolverine cosplay mask Egypt wearable 3D printed" width="600" height="600"><span class="card-badge">Sale</span><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/wolverine-cosplay-mask-egypt.webp","images/wolverine-cosplay-mask-egypt-2.webp"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Wolverine mask"><img src="images/wolverine-cosplay-mask-egypt.webp" alt="Wolverine cosplay mask Egypt wearable 3D printed" width="600" height="600"></button><span class="card-badge">Sale</span><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Wolverine Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Wolverine cosplay helmet with signature pointed ears, 3D printed and hand-finished in Egypt. Perfect for X-Men conventions and costume events.</p>
@@ -558,7 +552,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="fantasy">
-      <div class="card-img" data-images='["images/jack-skellington-cosplay-mask-egypt.png","images/jack-skellington-cosplay-mask-egypt-2.png"]' data-current="0"><img src="images/jack-skellington-cosplay-mask-egypt.png" alt="Jack Skellington cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-badge">Sale</span><span class="card-cat">Fantasy</span><span class="card-stock custom">Made to Order</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/jack-skellington-cosplay-mask-egypt.png","images/jack-skellington-cosplay-mask-egypt-2.png"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Jack Skellington mask"><img src="images/jack-skellington-cosplay-mask-egypt.png" alt="Jack Skellington cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-badge">Sale</span><span class="card-cat">Fantasy</span><span class="card-stock custom">Made to Order</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Jack Skellington Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Jack Skellington cosplay mask with mesh eye inserts, 3D printed and hand-finished in Egypt. Perfect for Halloween, conventions, and collectors wanting comfortable, accurate cosplay gear.</p>
@@ -576,7 +570,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="superhero">
-      <div class="card-img" data-images='["images/deadpool-cosplay-mask-egypt.webp","images/deadpool-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/deadpool-cosplay-mask-egypt.webp" alt="Deadpool cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-badge">Sale</span><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/deadpool-cosplay-mask-egypt.webp","images/deadpool-cosplay-mask-egypt-2.webp"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Deadpool mask"><img src="images/deadpool-cosplay-mask-egypt.webp" alt="Deadpool cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-badge">Sale</span><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Deadpool Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Deadpool cosplay mask with mesh eye lenses, 3D printed and hand-finished in Egypt. Screen-accurate design perfect for conventions, cosplay competitions, and Marvel fans.</p>
@@ -594,7 +588,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="villain">
-      <div class="card-img" data-images='["images/joker-cosplay-mask-egypt.webp","images/joker-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/joker-cosplay-mask-egypt.webp" alt="Joker cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-cat">Villain</span><span class="card-stock custom">Made to Order</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/joker-cosplay-mask-egypt.webp","images/joker-cosplay-mask-egypt-2.webp"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Joker mask"><img src="images/joker-cosplay-mask-egypt.webp" alt="Joker cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-cat">Villain</span><span class="card-stock custom">Made to Order</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Joker Bank Heist Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Joker cosplay mask from The Dark Knight, 3D printed and hand-finished in Egypt. Full-face design with screen-accurate details, perfect for conventions and collectors.</p>
@@ -612,7 +606,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="superhero">
-      <div class="card-img" data-images='["images/iron-man-cosplay-mask-egypt.webp","images/iron-man-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/iron-man-cosplay-mask-egypt.webp" alt="Iron Man cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/iron-man-cosplay-mask-egypt.webp","images/iron-man-cosplay-mask-egypt-2.webp"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Iron Man MK-46 mask"><img src="images/iron-man-cosplay-mask-egypt.webp" alt="Iron Man cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-cat">Superhero</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Iron Man MK-46 Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Iron Man Mark 46 cosplay helmet with LED-compatible eyes, 3D printed and hand-finished in Egypt. Perfect for MCU fans, conventions, and serious costume enthusiasts.</p>
@@ -630,7 +624,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="sci-fi">
-      <div class="card-img" data-images='["images/discohead-cosplay-mask-egypt.webp","images/discohead-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/discohead-cosplay-mask-egypt.webp" alt="DiscoHead cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-cat">Sci-Fi</span><span class="card-stock custom">Made to Order</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/discohead-cosplay-mask-egypt.webp","images/discohead-cosplay-mask-egypt-2.webp"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of DiscoHead mask"><img src="images/discohead-cosplay-mask-egypt.webp" alt="DiscoHead cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-cat">Sci-Fi</span><span class="card-stock custom">Made to Order</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">DiscoHead Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable DiscoHead cosplay helmet with programmable LED matrix visor, 3D printed and hand-finished in Egypt. Perfect for DJ events, conventions, and futuristic costume builds.</p>
@@ -648,7 +642,7 @@
     </div>
 
     <div class="product-card reveal" data-cat="japanese">
-      <div class="card-img" data-images='["images/oni-demon-cosplay-mask-egypt.webp","images/oni-demon-cosplay-mask-egypt-2.webp"]' data-current="0"><img src="images/oni-demon-cosplay-mask-egypt.webp" alt="Oni Demon cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"><span class="card-badge">Sale</span><span class="card-cat">Japanese</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" aria-label="Previous image">‹</button><button class="img-nav next" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
+      <div class="card-img" data-images='["images/oni-demon-cosplay-mask-egypt.webp","images/oni-demon-cosplay-mask-egypt-2.webp"]' data-current="0"><button type="button" class="lightbox-trigger" aria-label="View larger image of Oni Demon mask"><img src="images/oni-demon-cosplay-mask-egypt.webp" alt="Oni Demon cosplay mask Egypt wearable 3D printed" width="600" height="600" loading="lazy"></button><span class="card-badge">Sale</span><span class="card-cat">Japanese</span><span class="card-stock in-stock">In Stock</span><button class="img-nav prev" type="button" aria-label="Previous image">‹</button><button class="img-nav next" type="button" aria-label="Next image">›</button><span class="img-counter"><span class="img-current">1</span>/<span class="img-total">2</span></span></div>
       <div class="card-body">
         <div class="card-name">Oni Demon Cosplay Mask (Egypt)</div>
         <p class="card-desc">Wearable Oni demon cosplay mask with traditional design, 3D printed and hand-finished in Egypt. Available in painted variants, perfect for Japanese culture enthusiasts and convention-goers.</p>
@@ -670,11 +664,10 @@
 
 <section class="trust-bar" style="background:linear-gradient(135deg, var(--panel) 0%, rgba(201,168,76,0.06) 100%);">
   <div style="max-width:1300px;margin:0 auto;text-align:center;">
-    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;">✦ New</div>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,4vw,36px);letter-spacing:2px;color:var(--white);margin-bottom:8px;">CUSTOM 3D PRINTED <span style="color:var(--gold);">GIFTS</span></div>
-    <p style="font-size:14px;color:var(--iron);font-weight:300;margin-bottom:4px;">Personalized keychains, family name signs, name tags, pen holders & more — handcrafted in Egypt</p>
-    <p style="font-size:12px;color:var(--gold-dim);font-weight:300;margin-bottom:20px;">✦ Now featuring family gifts — full name or initials engraved in Arabic or English</p>
-    <a href="custom-gifts.html" class="btn-primary" style="font-size:11px;padding:12px 28px;">Explore Gifts →</a>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;">✦ Made For You</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,4vw,36px);letter-spacing:2px;color:var(--white);margin-bottom:8px;">CUSTOM CHARACTER <span style="color:var(--gold);">BUILDS</span></div>
+    <p style="font-size:14px;color:var(--iron);font-weight:300;margin-bottom:20px;">Send a character reference and we will quote a wearable mask or collector-grade helmet built around your vision.</p>
+    <a href="#contact" class="btn-primary" style="font-size:11px;padding:12px 28px;">Start a Custom Build →</a>
   </div>
 </section>
 
@@ -684,7 +677,7 @@
     <div class="craft-side">
       <div class="section-label">The Craft</div>
       <h2 class="section-title">MORE THAN<br><span>PRINTING</span></h2>
-      <p class="section-desc">Based in Egypt, we combine cutting-edge 3D printing with traditional craftsmanship to create masks that stand out at any convention, photoshoot, or collection.</p>
+      <p class="section-desc">Looking for a high-quality cosplay mask in Egypt? We combine precision 3D printing with traditional craftsmanship to create accurate, comfortable, durable masks and helmets for conventions, photoshoots, and collections.</p>
       <p class="section-desc" style="margin-top:16px;">We're a proud part of <strong style="color:var(--gold);font-weight:600;">Insomnia Egypt</strong> — the biggest gaming festival in Egypt. Roughly <strong style="color:var(--gold);font-weight:600;">1 in 10 cosplayers</strong> at the Cosplay Competition wear our work.</p>
       <div class="pillars">
         <div class="pillar"><span class="pillar-icon">⬡</span><div class="pillar-title">Precision Printed</div><p class="pillar-text">High-resolution 3D printing with premium materials for durability and accuracy.</p></div>
@@ -704,8 +697,8 @@
         <div class="step reveal"><div class="step-num">02</div><div class="step-title">Design</div><p class="step-text">We model or refine your design in 3D and send a preview for approval before printing.</p></div>
         <div class="step reveal"><div class="step-num">03</div><div class="step-title">Print</div><p class="step-text">Precision printing with the best material for your application and required resolution.</p></div>
         <div class="step reveal"><div class="step-num">04</div><div class="step-title">Finish</div><p class="step-text">Egyptian artists apply sanding, priming, painting, and detailing for a museum-quality result.</p></div>
-        <div class="step reveal"><div class="step-num">05</div><div class="step-title">Deliver</div><p class="step-text">Carefully packaged and delivered to your door anywhere in Egypt.</p></div>
-        <p style="text-align: center; margin-top: 32px; font-size: 16px; color: var(--iron); line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">Forg3d.Art creates premium 3D printed cosplay masks and helmets in Egypt. We specialize in screen-accurate builds for collectors, cosplayers, and events. From Wolverine cowls to custom helmets, we deliver wearable cosplay pieces across Cairo and all of Egypt.</p>
+        <div class="step reveal"><div class="step-num">05</div><div class="step-title">Deliver</div><p class="step-text">Carefully packaged and delivered across Egypt or shipped internationally by quotation.</p></div>
+        <p style="text-align: center; margin-top: 32px; font-size: 16px; color: var(--iron); line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">Forg3d.Art specializes in screen-accurate, wearable cosplay pieces for collectors, cosplayers, and events. From Wolverine cowls to custom helmets, every build is precision printed and hand-finished in Egypt.</p>
       </div>
     </div>
   </div>
@@ -724,15 +717,9 @@
         WHATSAPP US NOW
       </a>
       <div class="contact-num">+20 109 667 7140</div>
-      <div class="contact-note">Cairo & Beni Suef — Egypt · Orders ship nationwide</div>
+      <div class="contact-note">Cairo &amp; Beni Suef — Egypt · Nationwide &amp; international shipping</div>
     </div>
   </div>
-</section>
-
-<section aria-label="About Forg3d.Art cosplay masks in Egypt" class="visually-hidden">
-  <h2>Cosplay Masks & Helmets in Egypt</h2>
-  <p>Looking for high-quality cosplay masks in Egypt? Forg3d.Art offers handcrafted 3D printed masks and helmets designed for accuracy, comfort, and durability. We provide custom cosplay builds, wearable helmets, and collector-grade pieces with nationwide delivery.</p>
-  <p>Our work is trusted by cosplayers attending events like Insomnia Egypt and other conventions across the country.</p>
 </section>
 
 <section id="faq" style="max-width:900px; margin:0 auto; padding:80px 48px;">
@@ -745,7 +732,7 @@
     </details>
     <details class="faq-item">
       <summary class="faq-q">Do you ship outside Cairo?</summary>
-      <p class="faq-a">Yes, delivery is available across all of Egypt. We ship to Cairo, Beni Suef, Alexandria, and everywhere in between.</p>
+      <p class="faq-a">Yes. We deliver across Egypt and ship internationally, with rates and timing confirmed before your order.</p>
     </details>
     <details class="faq-item">
       <summary class="faq-q">Are the masks wearable?</summary>
@@ -761,6 +748,7 @@
     </details>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="footer-logo">Forg3d<em>.</em>Art</div>
@@ -770,11 +758,12 @@
     <a href="https://www.tiktok.com/@forg3d.art" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
     <a href="https://wa.me/201096677140" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
   </div>
-  <div class="footer-text" style="width:100%;text-align:center;order:5;"><a href="custom-gifts.html" style="color:var(--gold);text-decoration:none;">Custom Gifts</a> · <a href="guides.html" style="color:var(--gold);text-decoration:none;">Guides</a> · <a href="portfolio.html" style="color:var(--gold);text-decoration:none;">Portfolio</a> · <a href="info.html" style="color:var(--gold);text-decoration:none;">Shipping &amp; Info</a></div>
+  <div class="footer-text" style="width:100%;text-align:center;order:5;"><a href="index.html#collection" style="color:var(--gold);text-decoration:none;">Masks</a> · <a href="index.html#craft-process" style="color:var(--gold);text-decoration:none;">Craft &amp; Process</a> · <a href="info.html" style="color:var(--gold);text-decoration:none;">Shipping &amp; Info</a> · Looking for custom gifts? <a href="https://esn3ly.store/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">Visit Esn3ly ↗</a></div>
   <div class="footer-text">© 2026 ALL RIGHTS RESERVED · MADE IN EGYPT 🇪🇬</div>
   <div class="footer-text" style="color:var(--gold-dim);">3D PRINT · HANDCRAFTED · ARTIST FINISH</div>
 </footer>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+  <h2 class="visually-hidden" id="lightbox-title">Product image viewer</h2>
   <button class="lightbox-close" id="lbClose" aria-label="Close lightbox">&times;</button>
   <button class="lightbox-arrow lightbox-prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
   <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
@@ -782,118 +771,6 @@
 </div>
 
 <script src="main.js"></script>
-<script>
-  // Ripple + conversion tracking on order buttons
-  document.querySelectorAll('.btn-order').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      const r = this.getBoundingClientRect();
-      const size = Math.max(r.width, r.height) * 1.4;
-      const rip = document.createElement('span');
-      rip.className = 'ripple';
-      rip.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px`;
-      this.appendChild(rip);
-      rip.addEventListener('animationend', () => rip.remove());
-      const card = this.closest('.product-card');
-      const label = card ? card.querySelector('.card-name').textContent.trim() : 'unknown';
-      gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: label });
-    });
-  });
-
-  // Image Gallery navigation (prev/next per card)
-  document.querySelectorAll('.card-img').forEach(cardImg => {
-    const images = JSON.parse(cardImg.dataset.images);
-    const prevBtn = cardImg.querySelector('.img-nav.prev');
-    const nextBtn = cardImg.querySelector('.img-nav.next');
-    const currentSpan = cardImg.querySelector('.img-current');
-    const img = cardImg.querySelector('img');
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      let current = parseInt(cardImg.dataset.current);
-      current = (current - 1 + images.length) % images.length;
-      cardImg.dataset.current = current;
-      img.src = images[current];
-      currentSpan.textContent = current + 1;
-    });
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      let current = parseInt(cardImg.dataset.current);
-      current = (current + 1) % images.length;
-      cardImg.dataset.current = current;
-      img.src = images[current];
-      currentSpan.textContent = current + 1;
-    });
-  });
-
-  // Skeleton loaders
-  document.querySelectorAll('.card-img').forEach(card => {
-    const img = card.querySelector('img');
-    if (img) {
-      card.classList.add('skeleton');
-      img.addEventListener('load', () => card.classList.remove('skeleton'));
-      img.addEventListener('error', () => {
-        card.classList.remove('skeleton');
-        img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect width="400" height="400" fill="%232a2a2a"/%3E%3Ctext x="200" y="205" fill="%23888888" font-family="monospace" font-size="18" text-anchor="middle"%3ENot Found%3C/text%3E%3C/svg%3E';
-      });
-    }
-  });
-
-  // Animated counter stats
-  const statEls = document.querySelectorAll('.hstat-num');
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.dataset.target);
-        const suffix = el.dataset.suffix || '';
-        let current = 0;
-        const step = Math.ceil(target / 40);
-        const interval = setInterval(() => {
-          current = Math.min(current + step, target);
-          el.textContent = current + suffix;
-          if (current >= target) clearInterval(interval);
-        }, 40);
-        statObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-  statEls.forEach(el => statObserver.observe(el));
-
-  // WA Particles canvas
-  (function() {
-    const btn = document.getElementById('btnWaBig');
-    const cvs = document.getElementById('wa-particles');
-    if (!btn || !cvs) return;
-    let particles = [], running = false;
-    function resize() { cvs.width = btn.offsetWidth; cvs.height = btn.offsetHeight; }
-    resize(); window.addEventListener('resize', resize);
-    function burst(ox, oy) {
-      for (let i = 0; i < 20; i++) {
-        const a = Math.random()*Math.PI*2, s = 1.5+Math.random()*3.5;
-        particles.push({x:ox,y:oy,vx:Math.cos(a)*s,vy:Math.sin(a)*s,r:2+Math.random()*3,alpha:1,color:Math.random()>.5?'#fff':'#a8ffc8'});
-      }
-    }
-    function loop() {
-      const ctx = cvs.getContext('2d');
-      ctx.clearRect(0,0,cvs.width,cvs.height);
-      particles = particles.filter(p => p.alpha > 0.02);
-      particles.forEach(p => {
-        p.x+=p.vx; p.y+=p.vy; p.vy+=0.09; p.alpha*=0.93;
-        ctx.globalAlpha=p.alpha; ctx.fillStyle=p.color;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-      });
-      ctx.globalAlpha=1;
-      if (particles.length) requestAnimationFrame(loop); else running=false;
-    }
-    function go(e) {
-      const r = btn.getBoundingClientRect();
-      burst(e.clientX-r.left, e.clientY-r.top);
-      if (!running) { running=true; loop(); }
-    }
-    btn.addEventListener('mouseenter', go);
-    btn.addEventListener('mousemove', e => { if(Math.random()>.7) go(e); });
-    btn.addEventListener('click', e => { for(let i=0;i<3;i++) go(e); });
-  })();
-</script>
 <noscript>
   <div style="text-align: center; padding: 20px; background: var(--panel); color: var(--white);">
     <p>This site works best with JavaScript enabled. Please enable JavaScript to view all features.</p>

@@ -1,75 +1,38 @@
-# Forg3d.Art — 3D Printed Cosplay Masks & Custom Gifts, Egypt
+# Forg3d.Art — Cosplay Masks & Helmets
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-forg3d.art-gold)](https://forg3d.art)
+[Forg3d.Art](https://forg3d.art) is an English-first static storefront for wearable 3D printed cosplay masks and helmets handcrafted in Egypt. Orders are handled through WhatsApp, with delivery across Egypt and international shipping by quotation.
 
-Premium 3D printed cosplay masks, helmets, and personalized gifts — handcrafted in Egypt.
+Custom gifts have moved to [Esn3ly](https://esn3ly.store/). The old Forg3d.Art gift catalog, guides, and portfolio are permanently redirected there through 27 Cloudflare Workers Static Assets `_redirects` rules. A separate internal 200 proxy keeps `/` mapped to `index.html` while `/info.html` remains a direct 200.
 
-## 🎭 Cosplay Masks
+## Retained site
 
-9 masks across 5 categories: Superhero, Sci-Fi, Fantasy, Villain, Japanese.  
-Prices: 999–3,800 EGP.
+- `/` and `/index.html` — mask collection, process, FAQ, and WhatsApp ordering
+- `/info.html` — production, shipping, returns, care, payment, and privacy
+- `/404.html` — custom not-found page
+- `manifest.json` and `sw.js` — installable, offline-capable cosplay shell
+- Strict analytics opt-in — Google Analytics is not requested before acceptance
 
-## 🎁 Custom Gifts
+## Local QA
 
-9 products across 5 categories: Name Tags, Family Gifts, Couple Gifts, Islamic Decor, Desktop.
+The production site has no runtime dependencies. Node is used only to provide repeatable QA commands.
 
-| Product | Category | Price |
-|---------|----------|-------|
-| Customizable Name Tag | Name Tags | 149 EGP |
-| Personalized Family Sign | Family Gifts | 299 EGP |
-| Couple / Valentine Gift | Couple Gifts | 299 EGP |
-| Initials with Heart | Couple Gifts | 299 EGP |
-| Parametric Lithophane Text | Wall Art | 299 EGP |
-| Alhamdulillah Calligraphy Stand | Islamic Decor | 899 EGP |
-| Subhanallah Calligraphy Stand | Islamic Decor | 899 EGP |
-| Letter Decor Designer | Desktop | 159 EGP |
-| Surah Al Kafiroon Wall Art | Islamic Decor | 3,599 EGP |
+```sh
+npm ci
+npm test
+```
 
-Arabic & English engraving available. Orders placed via WhatsApp form.
+`npm test` runs the zero-dependency Python checker and `node --check` for `main.js` and `sw.js`. The checker validates retained routes, links, fragments, image and carousel sources, JSON-LD, page landmarks and metadata, safe new-tab links, the sitemap, service-worker precache, all 27 redirect rules, and the absence of retired gift resources.
 
-## 🛠️ Tech Stack
+GitHub Actions runs the same commands on pushes and pull requests with Python 3.12 and Node 22.
 
-- Shared CSS (`styles.css`) & JS (`main.js`) across pages
-- Zero dependencies, zero build tools
-- **PWA** — installable via `manifest.json` + offline-capable service worker (`sw.js`)
-- Custom 404 error page (`404.html`)
-- Google Analytics 4 (GA4) with **Consent Mode** — analytics load only after opt-in; conversion tracking on all WhatsApp clicks
-- Schema.org structured data (Organization + `sameAs`, Product, FAQPage, ItemList, BreadcrumbList, LocalBusiness)
-- Lightbox image viewer with keyboard navigation & focus trap
-- Back-to-top button, hamburger mobile menu (all pages), scroll-reveal animations
-- Cookie-consent banner, optimized/compressed imagery (~72% smaller)
-- CI: automated link/id/metadata QA + HTML validation on every push (`.github/workflows/qa.yml`)
+For a quick local preview:
 
-## 📦 Project Structure
+```sh
+python -m http.server 8000
+```
 
-| File | Purpose |
-|------|--------|
-| `index.html` | Cosplay masks landing page |
-| `custom-gifts.html` | Custom gifts page with order form |
-| `guides.html` | Gift-guides hub linking all 6 guides |
-| `guide-*.html` | 6 SEO gift guides (birthdays, weddings, corporate, couples, islamic, diaspora) |
-| `portfolio.html` | Testimonials & case studies |
-| `info.html` | Shipping, returns, privacy & ordering info |
-| `styles.css` | Shared CSS (variables, layout, components, consent banner) |
-| `main.js` | Shared JS (SW registration, lightbox, hamburger, WhatsApp tracking, consent, back-to-top) |
-| `sw.js` | Service worker (offline shell caching) |
-| `manifest.json` | PWA manifest |
-| `404.html` | Custom error page |
-| `favicon.ico` | Favicon · `icon-192/512.png`, `icon-maskable-512.png` | PWA icons |
-| `logo.png` | Brand logo (400×400) |
-| `forg3dart_512.png` | OG image (512×512) |
-| `sitemap.xml` | XML sitemap |
-| `robots.txt` | Crawler rules |
-| `scripts/qa_check.py` | Zero-dependency QA checker (`python3 scripts/qa_check.py`) |
-| `.github/workflows/` | CI: QA + HTML validation |
-| `wrangler.jsonc` | Cloudflare Workers static-assets deploy config |
+Cloudflare redirect behavior must be verified in a Workers preview or deployment because a basic Python server does not process `_redirects`.
 
-### Images
+## Deployment notes
 
-- Mask images: `/images/` — 2 images per product, WebP/JPEG/PNG
-- Gift images: `/images/gifts/` — product photos (JPG/WebP)
-
-## 📞 Order
-
-All orders via WhatsApp: [+20 109 667 7140](https://wa.me/201096677140)  
-Cairo — Egypt · Orders ship nationwide
+The site is configured as a Cloudflare Workers Static Assets project in `wrangler.jsonc`. Keep the retired route mappings in `_redirects` indefinitely. After a tested rollout, submit the reduced `sitemap.xml` in Google Search Console and monitor redirect coverage, mask impressions, and Esn3ly referral traffic.

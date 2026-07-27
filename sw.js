@@ -1,22 +1,10 @@
-/* ============================================================
-   Forg3d.Art — Service Worker
-   Cache-first for the static shell, network-first for pages,
-   so content stays fresh while the site works offline.
-   Bump CACHE_VERSION whenever styles.css / main.js change.
-   ============================================================ */
-const CACHE_VERSION = 'forg3d-v2';
+/* Forg3d.Art service worker — cosplay-only static shell. */
+'use strict';
+
+const CACHE_VERSION = 'forg3d-v3';
 const PRECACHE = [
   '/',
   '/index.html',
-  '/custom-gifts.html',
-  '/guides.html',
-  '/guide-birthdays.html',
-  '/guide-weddings.html',
-  '/guide-couples.html',
-  '/guide-corporate.html',
-  '/guide-islamic.html',
-  '/guide-diaspora.html',
-  '/portfolio.html',
   '/info.html',
   '/404.html',
   '/styles.css',
@@ -24,15 +12,35 @@ const PRECACHE = [
   '/manifest.json',
   '/favicon.ico',
   '/logo.png',
+  '/forg3dart_small.png',
+  '/forg3dart_512.png',
   '/icon-192.png',
   '/icon-512.png',
-  '/icon-maskable-512.png'
+  '/icon-maskable-512.png',
+  '/images/optimus-prime-cosplay-mask-egypt.jpeg',
+  '/images/optimus-prime-cosplay-mask-egypt-2.jpg',
+  '/images/sauron-cosplay-mask-egypt.jpg',
+  '/images/sauron-cosplay-mask-egypt-2.jpg',
+  '/images/wolverine-cosplay-mask-egypt.webp',
+  '/images/wolverine-cosplay-mask-egypt-2.webp',
+  '/images/jack-skellington-cosplay-mask-egypt.png',
+  '/images/jack-skellington-cosplay-mask-egypt-2.png',
+  '/images/deadpool-cosplay-mask-egypt.webp',
+  '/images/deadpool-cosplay-mask-egypt-2.webp',
+  '/images/joker-cosplay-mask-egypt.webp',
+  '/images/joker-cosplay-mask-egypt-2.webp',
+  '/images/iron-man-cosplay-mask-egypt.webp',
+  '/images/iron-man-cosplay-mask-egypt-2.webp',
+  '/images/discohead-cosplay-mask-egypt.webp',
+  '/images/discohead-cosplay-mask-egypt-2.webp',
+  '/images/oni-demon-cosplay-mask-egypt.webp',
+  '/images/oni-demon-cosplay-mask-egypt-2.webp'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_VERSION)
-      .then(cache => cache.addAll(PRECACHE).catch(() => {}))
+      .then(cache => cache.addAll(PRECACHE))
       .then(() => self.skipWaiting())
   );
 });
@@ -40,38 +48,43 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_VERSION).map(k => caches.delete(k))))
+      .then(names => Promise.all(
+        names
+          .filter(name => name.startsWith('forg3d-') && name !== CACHE_VERSION)
+          .map(name => caches.delete(name))
+      ))
       .then(() => self.clients.claim())
   );
 });
 
-self.addEventListener('fetch', event => {
-  const req = event.request;
-  // Only handle same-origin GET requests; let WhatsApp, fonts, analytics pass through.
-  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
-
-  const isPage = req.mode === 'navigate' ||
-    (req.headers.get('accept') || '').includes('text/html');
-
-  if (isPage) {
-    // Network-first for HTML so pages stay up to date, fall back to cache/offline.
-    event.respondWith(
-      fetch(req)
-        .then(res => {
-          const copy = res.clone();
-          caches.open(CACHE_VERSION).then(c => c.put(req, copy));
-          return res;
-        })
-        .catch(() => caches.match(req).then(r => r || caches.match('/404.html')))
-    );
-  } else {
-    // Cache-first for static assets (css/js/images).
-    event.respondWith(
-      caches.match(req).then(cached => cached || fetch(req).then(res => {
-        const copy = res.clone();
-        caches.open(CACHE_VERSION).then(c => c.put(req, copy));
-        return res;
-      }).catch(() => cached))
-    );
+async function cacheValidResponse(request, response) {
+  if (response.ok && !response.redirected) {
+    const cache = await caches.open(CACHE_VERSION);
+    await cache.put(request, response.clone());
   }
+  return response;
+}
+
+self.addEventListener('fetch', event => {
+  const request = event.request;
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
+
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then(response => cacheValidResponse(request, response))
+        .catch(async () => (await caches.match(request)) || caches.match('/404.html'))
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(request).then(cached => {
+      if (cached) return cached;
+      return fetch(request).then(response => cacheValidResponse(request, response));
+    })
+  );
 });

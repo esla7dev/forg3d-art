@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://forg3d.art/404.html">
 <title>Page Not Found | Forg3d.Art</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,18 +68,29 @@
     border: 1px solid var(--border); color: var(--iron);
   }
   .btn-ghost:hover { border-color: var(--iron); color: var(--white); }
+  .skip-to-content {
+    position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--black); padding: 12px 24px;
+    font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 2px;
+    text-decoration: none; text-transform: uppercase; z-index: 10;
+  }
+  .skip-to-content:focus { top: 12px; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 </style>
 </head>
 <body>
-  <div class="error-code">404</div>
-  <div class="content">
-    <div class="tag">Error 404</div>
-    <h1>PAGE <span>NOT FOUND</span></h1>
-    <p>The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
-    <div class="actions">
-      <a href="/" class="btn btn-gold">Back to Home</a>
-      <a href="/custom-gifts.html" class="btn btn-ghost">Custom Gifts →</a>
+  <a href="#main-content" class="skip-to-content">Skip to Content</a>
+  <main id="main-content">
+    <div class="error-code">404</div>
+    <div class="content">
+      <div class="tag">Error 404</div>
+      <h1>PAGE <span>NOT FOUND</span></h1>
+      <p>The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+      <div class="actions">
+        <a href="/" class="btn btn-gold">Back to Home</a>
+        <a href="/index.html#collection" class="btn btn-ghost">Browse Masks →</a>
+      </div>
     </div>
-  </div>
+  </main>
 </body>
 </html>

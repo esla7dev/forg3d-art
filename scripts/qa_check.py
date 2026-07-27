@@ -137,6 +137,9 @@ def check_html(errors):
         errors.append(f"product HTML set is {list(product_html)}, expected {list(PRODUCT_PAGES)}")
 
     for page, parser in parsed.items():
+        with open(full_path(page), encoding="utf-8") as handle:
+            source = handle.read()
+
         duplicates = sorted(value for value, count in Counter(parser.ids).items() if count > 1)
         if duplicates:
             errors.append(f"{page}: duplicate IDs: {', '.join(duplicates)}")
@@ -153,6 +156,10 @@ def check_html(errors):
                 errors.append(f"{page}: expected exactly one {label}, found {count}")
         if "main-content" not in parser.ids:
             errors.append(f"{page}: missing id=\"main-content\"")
+        expected_site_navs = 0 if page == "404.html" else 1
+        site_nav_count = source.count('<nav class="site-nav" aria-label="Primary navigation">')
+        if site_nav_count != expected_site_navs:
+            errors.append(f"{page}: expected {expected_site_navs} scoped primary site navigation(s), found {site_nav_count}")
 
         for link in parser.new_tab_links:
             rel_values = set((link.get("rel") or "").split())
@@ -226,6 +233,11 @@ def check_products(errors):
         with open(full_path(page), encoding="utf-8") as handle:
             source = handle.read()
 
+        if source.count('class="back-to-collection" href="../index.html#collection"') != 1:
+            errors.append(f"{page}: expected one back-to-collection link")
+        if "Back to collection" not in source:
+            errors.append(f"{page}: back-to-collection link needs visible text")
+
         product_blocks = []
         for raw_json in parser.json_ld:
             try:
@@ -263,6 +275,31 @@ def check_products(errors):
                 errors.append(f"{page}: unavailable product must ask about availability")
         elif "Order Now" not in source:
             errors.append(f"{page}: available/preorder product should offer Order Now")
+
+
+def check_shared_product_styles(errors):
+    with open(full_path("styles.css"), encoding="utf-8") as handle:
+        styles = handle.read()
+    required_shared_rules = (
+        ".site-nav {",
+        ".card-stock {",
+        ".price-was {",
+        ".btn-order {",
+        ".btn-order svg { width: 16px; height: 16px;",
+        ".back-to-collection {",
+    )
+    for rule in required_shared_rules:
+        if rule not in styles:
+            errors.append(f"styles.css: missing shared product rule {rule}")
+    if re.search(r"(?m)^\s*nav\s*(?:\{|,)", styles):
+        errors.append("styles.css: unscoped nav selector can capture product breadcrumbs")
+
+    with open(full_path("index.html"), encoding="utf-8") as handle:
+        index_source = handle.read()
+    inline_styles = "\n".join(re.findall(r"<style[^>]*>(.*?)</style>", index_source, re.DOTALL))
+    for selector in (".card-stock", ".price-was", ".btn-order"):
+        if re.search(rf"{re.escape(selector)}\s*\{{", inline_styles):
+            errors.append(f"index.html: {selector} must live in styles.css, not inline styles")
 
 
 def check_redirects(errors):
@@ -406,6 +443,7 @@ def main():
     errors = []
     check_html(errors)
     check_products(errors)
+    check_shared_product_styles(errors)
     check_redirects(errors)
     check_manifest_and_service_worker(errors)
     check_sitemap(errors)

@@ -400,43 +400,6 @@
   @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
   .card-badge { background: var(--ember); color: var(--white); }
 
-  .card-stock {
-    position: absolute; bottom: 12px; left: 12px;
-    font-family: 'Share Tech Mono', monospace; font-size: 8px;
-    letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; border-radius: 2px;
-  }
-  .card-stock.in-stock { background: var(--wa); color: #000; }
-  .card-stock.custom { background: var(--gold); color: #000; }
-  .card-stock.out-of-stock { background: var(--steel); color: var(--white); }
-
-  .price-was { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--steel); text-decoration: line-through; }
-
-  /* ORDER BUTTON */
-  .btn-order {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--wa); color: #000;
-    padding: 10px 20px; font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px; letter-spacing: 2px; text-transform: uppercase;
-    text-decoration: none; white-space: nowrap;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s, background 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .btn-order::before {
-    content: ''; position: absolute; top: 0; left: -100%;
-    width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transform: skewX(-20deg);
-  }
-  .btn-order:hover::before { left: 160%; transition: left 0.5s ease; }
-  .btn-order:hover {
-    background: var(--wa-dark); transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 8px 24px rgba(37,211,102,0.4);
-  }
-  .btn-order:active { transform: scale(0.97); }
-  .btn-order svg { width: 16px; height: 16px; fill: #000; flex-shrink: 0; transition: transform 0.3s; }
-  .btn-order:hover svg { transform: rotate(10deg) scale(1.15); }
-
   /* CRAFT & PROCESS MERGED */
   #craft-process { background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .craft-process-container {
@@ -552,7 +515,7 @@
 
 <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-<nav aria-label="Primary navigation">
+<nav class="site-nav" aria-label="Primary navigation">
   <a href="index.html" class="logo">Forg3d<em>.</em>Art</a>
   <ul id="primaryNavigation">
     <li><a href="#collection" class="active-link">MASKS</a></li>

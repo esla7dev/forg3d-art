@@ -1,12 +1,21 @@
 /* Forg3d.Art service worker — cosplay-only static shell. */
 'use strict';
 
-const CACHE_VERSION = 'forg3d-v3';
+const CACHE_VERSION = 'forg3d-v4';
 const PRECACHE = [
   '/',
   '/index.html',
   '/info.html',
   '/404.html',
+  '/products/optimus-prime-cosplay-mask.html',
+  '/products/sauron-cosplay-mask.html',
+  '/products/wolverine-cosplay-mask.html',
+  '/products/jack-skellington-cosplay-mask.html',
+  '/products/deadpool-cosplay-mask.html',
+  '/products/joker-bank-heist-cosplay-mask.html',
+  '/products/iron-man-mk-46-cosplay-mask.html',
+  '/products/discohead-cosplay-mask.html',
+  '/products/oni-demon-cosplay-mask.html',
   '/styles.css',
   '/main.js',
   '/manifest.json',
@@ -71,6 +80,15 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+
+  if (url.pathname === '/main.js' || url.pathname === '/styles.css') {
+    event.respondWith(
+      fetch(request)
+        .then(response => cacheValidResponse(request, response))
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
 
   if (request.mode === 'navigate') {
     event.respondWith(

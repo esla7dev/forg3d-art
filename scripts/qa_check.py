@@ -11,7 +11,19 @@ import xml.etree.ElementTree as ET
 from urllib.parse import unquote, urldefrag, urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RETAINED_PAGES = ("index.html", "info.html", "404.html")
+PRODUCT_PAGES = (
+    "products/optimus-prime-cosplay-mask.html",
+    "products/sauron-cosplay-mask.html",
+    "products/wolverine-cosplay-mask.html",
+    "products/jack-skellington-cosplay-mask.html",
+    "products/deadpool-cosplay-mask.html",
+    "products/joker-bank-heist-cosplay-mask.html",
+    "products/iron-man-mk-46-cosplay-mask.html",
+    "products/discohead-cosplay-mask.html",
+    "products/oni-demon-cosplay-mask.html",
+)
+RETAINED_PAGES = ("index.html", "info.html", "404.html") + PRODUCT_PAGES
+ROOT_HTML_PAGES = ("index.html", "info.html", "404.html")
 RETIRED_DESTINATIONS = {
     "custom-gifts": "https://esn3ly.store/#collections",
     "guides": "https://esn3ly.store/#collections",
@@ -38,6 +50,7 @@ class PageParser(HTMLParser):
         self.filters = set()
         self.refs = []
         self.data_images = []
+        self.data_alts = []
         self.json_ld = []
         self.new_tab_links = []
         self.tags = Counter()
@@ -55,6 +68,8 @@ class PageParser(HTMLParser):
             self.filters.add(data["data-filter"])
         if data.get("data-images"):
             self.data_images.append(data["data-images"])
+        if data.get("data-alts"):
+            self.data_alts.append(data["data-alts"])
 
         if tag == "a" and data.get("href"):
             self.refs.append(("href", data["href"]))
@@ -112,8 +127,14 @@ def check_html(errors):
     parsed = {page: parse_page(page) for page in RETAINED_PAGES}
 
     root_html = sorted(name for name in os.listdir(ROOT) if name.endswith(".html"))
-    if root_html != sorted(RETAINED_PAGES):
-        errors.append(f"root HTML set is {root_html}, expected only {list(RETAINED_PAGES)}")
+    if root_html != sorted(ROOT_HTML_PAGES):
+        errors.append(f"root HTML set is {root_html}, expected only {list(ROOT_HTML_PAGES)}")
+    product_html = tuple(sorted(
+        f"products/{name}" for name in os.listdir(full_path("products"))
+        if name.endswith(".html")
+    )) if os.path.isdir(full_path("products")) else ()
+    if product_html != tuple(sorted(PRODUCT_PAGES)):
+        errors.append(f"product HTML set is {list(product_html)}, expected {list(PRODUCT_PAGES)}")
 
     for page, parser in parsed.items():
         duplicates = sorted(value for value, count in Counter(parser.ids).items() if count > 1)
@@ -138,7 +159,7 @@ def check_html(errors):
             if not {"noopener", "noreferrer"}.issubset(rel_values):
                 errors.append(f"{page}: target=\"_blank\" link lacks noopener noreferrer: {link.get('href')}")
 
-        expected_esn3ly_count = 1 if page in ("index.html", "info.html") else 0
+        expected_esn3ly_count = 0 if page == "404.html" else 1
         if len(parser.esn3ly_links) != expected_esn3ly_count:
             errors.append(f"{page}: expected {expected_esn3ly_count} Esn3ly footer link(s), found {len(parser.esn3ly_links)}")
 
@@ -161,6 +182,14 @@ def check_html(errors):
                 target, _ = resolve_local_reference(page, image)
                 if not target or not os.path.isfile(full_path(target)):
                     errors.append(f"{page}: missing carousel image {image}")
+        for raw_alts in parser.data_alts:
+            try:
+                alts = json.loads(raw_alts)
+            except json.JSONDecodeError as exc:
+                errors.append(f"{page}: invalid data-alts JSON: {exc}")
+                continue
+            if not isinstance(alts, list) or not alts:
+                errors.append(f"{page}: data-alts must be a non-empty list")
 
         for attribute, value in parser.refs:
             target, fragment = resolve_local_reference(page, value)
@@ -189,6 +218,51 @@ def check_html(errors):
             source = handle.read().lower()
         if "googletagmanager.com" in source or re.search(r"\bgtag\s*\(", source):
             errors.append(f"{page}: analytics code must not be embedded in retained HTML")
+
+
+def check_products(errors):
+    for page in PRODUCT_PAGES:
+        parser = parse_page(page)
+        with open(full_path(page), encoding="utf-8") as handle:
+            source = handle.read()
+
+        product_blocks = []
+        for raw_json in parser.json_ld:
+            try:
+                data = json.loads(raw_json)
+            except json.JSONDecodeError:
+                continue
+            if data.get("@type") == "Product":
+                product_blocks.append(data)
+        if len(product_blocks) != 1:
+            errors.append(f"{page}: expected exactly one Product JSON-LD block, found {len(product_blocks)}")
+            continue
+        product = product_blocks[0]
+        canonical = f"https://forg3d.art/{page}"
+        if product.get("url") != canonical:
+            errors.append(f"{page}: Product JSON-LD url should be {canonical}")
+        offer = product.get("offers", {})
+        if offer.get("priceCurrency") != "EGP" or not offer.get("price"):
+            errors.append(f"{page}: Product offer must include EGP price")
+        if offer.get("availability") not in {
+            "https://schema.org/InStock",
+            "https://schema.org/OutOfStock",
+            "https://schema.org/PreOrder",
+        }:
+            errors.append(f"{page}: Product offer availability is invalid")
+        if "class=\"product-gallery" not in source:
+            errors.append(f"{page}: missing product gallery")
+        if "class=\"gallery-thumb" not in source:
+            errors.append(f"{page}: missing gallery thumbnails")
+        if "class=\"mobile-sticky-cta\"" not in source:
+            errors.append(f"{page}: missing mobile sticky CTA")
+        if "wa.me/201096677140?text=" not in source:
+            errors.append(f"{page}: missing product-specific WhatsApp action")
+        if page in ("products/optimus-prime-cosplay-mask.html", "products/sauron-cosplay-mask.html"):
+            if "Ask About Availability" not in source:
+                errors.append(f"{page}: unavailable product must ask about availability")
+        elif "Order Now" not in source:
+            errors.append(f"{page}: available/preorder product should offer Order Now")
 
 
 def check_redirects(errors):
@@ -237,9 +311,7 @@ def check_manifest_and_service_worker(errors):
             errors.append(f"manifest.json: invalid JSON: {exc}")
             return
 
-    index_parser = parse_page("index.html")
-    info_parser = parse_page("info.html")
-    parser_by_page = {"index.html": index_parser, "info.html": info_parser}
+    parser_by_page = {page: parse_page(page) for page in RETAINED_PAGES}
     for shortcut in manifest.get("shortcuts", []):
         target, fragment = resolve_local_reference("index.html", shortcut.get("url", ""))
         if not target or not os.path.isfile(full_path(target)):
@@ -260,8 +332,13 @@ def check_manifest_and_service_worker(errors):
             errors.append(f"sw.js: missing precache asset {entry}")
         if any(marker in entry.lower() for marker in RETIRED_MARKERS):
             errors.append(f"sw.js: retired resource in precache: {entry}")
-    if "forg3d-v3" not in service_worker:
-        errors.append("sw.js: cache version is not forg3d-v3")
+    if "forg3d-v4" not in service_worker:
+        errors.append("sw.js: cache version is not forg3d-v4")
+    for page in PRODUCT_PAGES:
+        if f"/{page}" not in precache:
+            errors.append(f"sw.js: missing product page in precache: /{page}")
+    if "url.pathname === '/main.js' || url.pathname === '/styles.css'" not in service_worker:
+        errors.append("sw.js: main.js/styles.css must use network-refresh strategy")
     if "cache.addAll(PRECACHE).catch" in service_worker:
         errors.append("sw.js: install failures are being swallowed")
 
@@ -274,7 +351,11 @@ def check_sitemap(errors):
         return
     namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     urls = [node.text for node in root.findall("sm:url/sm:loc", namespace)]
-    expected = ["https://forg3d.art/", "https://forg3d.art/info.html"]
+    expected = [
+        "https://forg3d.art/",
+        "https://forg3d.art/info.html",
+        *[f"https://forg3d.art/{page}" for page in PRODUCT_PAGES],
+    ]
     if urls != expected:
         errors.append(f"sitemap.xml: expected {expected}, found {urls}")
     for url in urls:
@@ -291,7 +372,7 @@ def check_retirement_and_packages(errors):
     if os.path.exists(full_path("images/gifts")):
         errors.append("retired images/gifts directory still exists")
 
-    deploy_files = ("index.html", "info.html", "404.html", "main.js", "styles.css", "manifest.json", "sitemap.xml", "sw.js")
+    deploy_files = (*RETAINED_PAGES, "main.js", "styles.css", "manifest.json", "sitemap.xml", "sw.js")
     for name in deploy_files:
         with open(full_path(name), encoding="utf-8") as handle:
             source = handle.read().lower()
@@ -324,6 +405,7 @@ def check_retirement_and_packages(errors):
 def main():
     errors = []
     check_html(errors)
+    check_products(errors)
     check_redirects(errors)
     check_manifest_and_service_worker(errors)
     check_sitemap(errors)
@@ -336,7 +418,7 @@ def main():
         return 1
 
     print("[OK] Forg3d.Art QA passed")
-    print("     3 retained pages, 27 permanent redirects, references, metadata, JSON-LD, PWA, and retirement checks are valid")
+    print("     12 retained pages, 9 product routes, 27 permanent redirects, references, metadata, JSON-LD, PWA, and retirement checks are valid")
     return 0
 
 

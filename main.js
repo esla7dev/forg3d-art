@@ -120,7 +120,7 @@ function showAnalyticsPreferences() {
     <div class="consent-text">
       <strong id="analytics-consent-title">Analytics preferences</strong><br>
       Google Analytics is optional and is not loaded unless you accept.
-      Declining keeps every shop feature working. <a href="info.html#privacy">Privacy details</a>.
+      Declining keeps every shop feature working. <a href="/info.html#privacy">Privacy details</a>.
     </div>
     <div class="consent-actions">
       <button class="consent-btn decline" type="button">Disable analytics</button>
@@ -273,7 +273,7 @@ function watchImageLoading(card, image) {
 
 function updateCardImage(card, index) {
   const images = JSON.parse(card.dataset.images || '[]');
-  const image = card.querySelector('.lightbox-trigger img');
+  const image = card.querySelector('.card-img-link img, .lightbox-trigger img, .gallery-main-img');
   if (!image || !images[index]) return;
 
   imageLoadCleanup.get(image)?.();
@@ -290,7 +290,7 @@ function updateCardImage(card, index) {
 }
 
 document.querySelectorAll('.card-img[data-images]').forEach(card => {
-  const image = card.querySelector('.lightbox-trigger img');
+  const image = card.querySelector('.card-img-link img, .lightbox-trigger img');
   if (!image) return;
   image.dataset.baseAlt = image.alt;
   image.title = image.alt;
@@ -298,13 +298,116 @@ document.querySelectorAll('.card-img[data-images]').forEach(card => {
 
   const images = JSON.parse(card.dataset.images || '[]');
   card.querySelector('.img-total').textContent = String(images.length);
-  card.querySelector('.img-nav.prev')?.addEventListener('click', () => {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const showPrevious = () => {
     const current = Number(card.dataset.current || 0);
     updateCardImage(card, (current - 1 + images.length) % images.length);
-  });
-  card.querySelector('.img-nav.next')?.addEventListener('click', () => {
+  };
+  const showNext = () => {
     const current = Number(card.dataset.current || 0);
     updateCardImage(card, (current + 1) % images.length);
+  };
+  card.querySelector('.img-nav.prev')?.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    showPrevious();
+  });
+  card.querySelector('.img-nav.next')?.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    showNext();
+  });
+  card.addEventListener('touchstart', event => {
+    const touch = event.changedTouches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  }, { passive: true });
+  card.addEventListener('touchend', event => {
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    if (Math.abs(deltaX) < 36 || Math.abs(deltaX) < Math.abs(deltaY) * 1.4) return;
+    event.preventDefault();
+    if (deltaX > 0) showPrevious();
+    else showNext();
+  });
+});
+
+document.querySelectorAll('.product-card[data-url]').forEach(card => {
+  card.addEventListener('click', event => {
+    if (event.defaultPrevented) return;
+    if (event.target.closest('a, button, input, select, textarea')) return;
+    window.location.href = card.dataset.url;
+  });
+});
+
+function updateProductGallery(gallery, index) {
+  const images = JSON.parse(gallery.dataset.images || '[]');
+  const alts = JSON.parse(gallery.dataset.alts || '[]');
+  const image = gallery.querySelector('.gallery-main-img');
+  if (!image || !images[index]) return;
+
+  gallery.dataset.current = String(index);
+  imageLoadCleanup.get(image)?.();
+  gallery.classList.add('skeleton');
+  image.src = images[index];
+  image.alt = alts[index] || image.alt;
+  image.title = image.alt;
+  gallery.querySelector('.gallery-current').textContent = String(index + 1);
+  gallery.querySelectorAll('.gallery-thumb').forEach(button => {
+    const active = Number(button.dataset.index) === index;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  watchImageLoading(gallery, image);
+}
+
+document.querySelectorAll('.product-gallery[data-images]').forEach(gallery => {
+  const images = JSON.parse(gallery.dataset.images || '[]');
+  const image = gallery.querySelector('.gallery-main-img');
+  if (!image || !images.length) return;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  gallery.querySelector('.gallery-total').textContent = String(images.length);
+  image.title = image.alt;
+  watchImageLoading(gallery, image);
+
+  const showPrevious = () => {
+    const current = Number(gallery.dataset.current || 0);
+    updateProductGallery(gallery, (current - 1 + images.length) % images.length);
+  };
+  const showNext = () => {
+    const current = Number(gallery.dataset.current || 0);
+    updateProductGallery(gallery, (current + 1) % images.length);
+  };
+
+  gallery.querySelector('.gallery-nav.prev')?.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    showPrevious();
+  });
+  gallery.querySelector('.gallery-nav.next')?.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    showNext();
+  });
+  gallery.querySelectorAll('.gallery-thumb').forEach(button => {
+    button.addEventListener('click', () => updateProductGallery(gallery, Number(button.dataset.index || 0)));
+  });
+  gallery.addEventListener('touchstart', event => {
+    const touch = event.changedTouches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  }, { passive: true });
+  gallery.addEventListener('touchend', event => {
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    if (Math.abs(deltaX) < 42 || Math.abs(deltaX) < Math.abs(deltaY) * 1.4) return;
+    event.preventDefault();
+    if (deltaX > 0) showPrevious();
+    else showNext();
   });
 });
 
@@ -315,6 +418,9 @@ const lightboxTriggers = Array.from(document.querySelectorAll('.lightbox-trigger
 const lightboxPrevious = document.getElementById('lbPrev');
 const lightboxNext = document.getElementById('lbNext');
 let lightboxIndex = -1;
+let lightboxImages = [];
+let lightboxAlts = [];
+let lightboxLabel = 'Product';
 let lastLightboxTrigger = null;
 let lightboxInertRegions = [];
 let bodyOverflowBeforeDialog = '';
@@ -328,22 +434,37 @@ function setRegionsInert(regions, inert) {
 }
 
 function updateLightbox() {
-  const trigger = lightboxTriggers[lightboxIndex];
-  const image = trigger?.querySelector('img');
-  if (!image) return;
-  const product = trigger.getAttribute('aria-label').replace(/^View larger image of /, '');
-  lightboxImage.src = image.currentSrc || image.src;
-  lightboxImage.alt = image.alt;
-  lightboxImage.title = image.title || image.alt;
-  lightboxTitle.textContent = `${product} image`;
-  lightboxPrevious.disabled = lightboxIndex <= 0;
-  lightboxNext.disabled = lightboxIndex >= lightboxTriggers.length - 1;
+  if (!lightboxImages[lightboxIndex]) return;
+  lightboxImage.src = lightboxImages[lightboxIndex];
+  lightboxImage.alt = lightboxAlts[lightboxIndex] || lightboxLabel;
+  lightboxImage.title = lightboxImage.alt;
+  lightboxTitle.textContent = `${lightboxLabel} image ${lightboxIndex + 1} of ${lightboxImages.length}`;
+  lightboxPrevious.disabled = lightboxImages.length < 2;
+  lightboxNext.disabled = lightboxImages.length < 2;
 }
 
 function openLightbox(trigger) {
   if (!lightbox) return;
   lastLightboxTrigger = trigger;
-  lightboxIndex = lightboxTriggers.indexOf(trigger);
+  const gallery = trigger.closest('.product-gallery[data-images]');
+  if (gallery) {
+    lightboxImages = JSON.parse(gallery.dataset.images || '[]');
+    lightboxAlts = JSON.parse(gallery.dataset.alts || '[]');
+    lightboxIndex = Number(gallery.dataset.current || 0);
+    lightboxLabel = trigger.getAttribute('aria-label').replace(/^Open full-size gallery for /, '');
+  } else {
+    lightboxImages = lightboxTriggers
+      .map(item => item.querySelector('img'))
+      .filter(Boolean)
+      .map(image => image.currentSrc || image.src);
+    lightboxAlts = lightboxTriggers
+      .map(item => item.querySelector('img'))
+      .filter(Boolean)
+      .map(image => image.alt);
+    lightboxIndex = lightboxTriggers.indexOf(trigger);
+    lightboxLabel = trigger.getAttribute('aria-label').replace(/^View larger image of /, '');
+  }
+  if (lightboxIndex < 0 || !lightboxImages[lightboxIndex]) return;
   updateLightbox();
   lightboxInertRegions = Array.from(document.body.children).filter(element =>
     element !== lightbox && !['SCRIPT', 'NOSCRIPT'].includes(element.tagName)
@@ -372,16 +493,14 @@ function closeLightbox() {
 lightboxTriggers.forEach(trigger => trigger.addEventListener('click', () => openLightbox(trigger)));
 document.getElementById('lbClose')?.addEventListener('click', closeLightbox);
 lightboxPrevious?.addEventListener('click', () => {
-  if (lightboxIndex > 0) {
-    lightboxIndex -= 1;
-    updateLightbox();
-  }
+  if (lightboxImages.length < 2) return;
+  lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+  updateLightbox();
 });
 lightboxNext?.addEventListener('click', () => {
-  if (lightboxIndex < lightboxTriggers.length - 1) {
-    lightboxIndex += 1;
-    updateLightbox();
-  }
+  if (lightboxImages.length < 2) return;
+  lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+  updateLightbox();
 });
 lightbox?.addEventListener('click', event => {
   if (event.target === lightbox) closeLightbox();
@@ -506,26 +625,6 @@ document.querySelectorAll('.btn-order').forEach(button => {
     ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
   });
 });
-
-if ('IntersectionObserver' in window) {
-  const statObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const element = entry.target;
-      const target = Number(element.dataset.target || 0);
-      const suffix = element.dataset.suffix || '';
-      let current = 0;
-      const step = Math.max(1, Math.ceil(target / 40));
-      const interval = window.setInterval(() => {
-        current = Math.min(current + step, target);
-        element.textContent = `${current}${suffix}`;
-        if (current >= target) window.clearInterval(interval);
-      }, 40);
-      statObserver.unobserve(element);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.hstat-num').forEach(element => statObserver.observe(element));
-}
 
 const whatsappButton = document.getElementById('btnWaBig');
 const particlesCanvas = document.getElementById('wa-particles');
